@@ -15,6 +15,7 @@ namespace Launchbase.Components.Presale
         [Inject] private IActionSubscriber _actionSubscriber { get; set; }
         [Inject] IJSRuntime javaScript { get; set; }
         [Inject] public IState<Store.TokenUseCase.Token> _tokenState { get; set; }
+        bool isApproved = false;
 
         [Parameter]
         public Pages.Presale Presale { get; set; }
@@ -44,12 +45,13 @@ namespace Launchbase.Components.Presale
                 if(action.TokenStatus.Status == Store.TokenUseCase.TaskStatus.Created)
                 {
                     Snackbr.Add(action.TokenStatus.Message, Severity.Success);
-                    MoveToNextStep();
+                    isApproved = true;
                     StateHasChanged();
                 }
                 else if(action.TokenStatus.Status == Store.TokenUseCase.TaskStatus.Failed)
                 {
                     Snackbr.Add(action.TokenStatus.Message, Severity.Warning);
+                    isApproved = false;
                     StateHasChanged();
                 }
             });

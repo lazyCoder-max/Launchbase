@@ -29,6 +29,7 @@ namespace Launchbase.Store.TokenUseCase
         public string Symbol { get; set; }
         public decimal Rate { get; set; }
         public bool IsSelected { get; set; }
+        public bool IsToken { get; set; }
     }
     public struct TokenStatus<T>
     {

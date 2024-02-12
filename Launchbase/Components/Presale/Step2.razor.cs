@@ -32,6 +32,7 @@ namespace Launchbase.Components.Presale
             var selectedCurrency = Currencies.Where(x=>x.IsSelected==true).ToList();
             if(selectedCurrency.Count>=1 )
             {
+                Presale.PresaleState.Value.Token.Currencies = selectedCurrency;
                 if (ValidateData())
                     return;
                 Presale.JumpToNextStep();

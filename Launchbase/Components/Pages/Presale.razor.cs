@@ -6,7 +6,7 @@ namespace Launchbase.Components.Pages
     public partial class Presale
     {
          int step = 1;
-        [Inject] public IState<Store.PresaleUseCase.PresaleToken> PresaleState { get; set; }
+        [Inject] public IState<Store.PresaleUseCase.PoolToken> PresaleState { get; set; }
         protected override void OnInitialized()
         {
             base.OnInitialized();

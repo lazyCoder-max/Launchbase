@@ -10,5 +10,6 @@ namespace Launchbase.Services.Interfaces
     {
         IToken Token { get; }
         IWallet Wallet { get; }
+        public IPool Pool { get; }
     }
 }

@@ -19,7 +19,7 @@ namespace Launchbase
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents(options =>
                 {
-                    options.JSInteropDefaultCallTimeout = TimeSpan.FromMinutes(3);
+                    options.JSInteropDefaultCallTimeout = TimeSpan.FromMinutes(10);
                 });
             if (builder.Environment.IsDevelopment())
             {

@@ -16,6 +16,97 @@ const ABI = [
         "inputs": [
             {
                 "internalType": "address",
+                "name": "tokenAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "tokenAmount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bool",
+                "name": "isToken",
+                "type": "bool"
+            },
+            {
+                "internalType": "uint256",
+                "name": "poolId",
+                "type": "uint256"
+            }
+        ],
+        "name": "contribute",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_token",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_adminWallet",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_startTime",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_endTime",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_softCap",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_hardCap",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_minContribution",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_maxContribution",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string[3]",
+                "name": "_otherInfo",
+                "type": "string[3]"
+            },
+            {
+                "internalType": "address[]",
+                "name": "tokens",
+                "type": "address[]"
+            },
+            {
+                "internalType": "uint256[]",
+                "name": "rates",
+                "type": "uint256[]"
+            }
+        ],
+        "name": "createPool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
                 "name": "implementation",
                 "type": "address"
             }
@@ -32,6 +123,19 @@ const ABI = [
         "inputs": [],
         "name": "FailedInnerCall",
         "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_owner",
+                "type": "address"
+            }
+        ],
+        "name": "initialize",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
         "inputs": [],
@@ -170,6 +274,26 @@ const ABI = [
         "type": "event"
     },
     {
+        "inputs": [],
+        "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
+            }
+        ],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
         "anonymous": false,
         "inputs": [
             {
@@ -183,16 +307,21 @@ const ABI = [
         "type": "event"
     },
     {
-        "inputs": [],
-        "name": "UPGRADE_INTERFACE_VERSION",
-        "outputs": [
+        "inputs": [
             {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
+                "internalType": "address",
+                "name": "newImplementation",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes",
+                "name": "data",
+                "type": "bytes"
             }
         ],
-        "stateMutability": "view",
+        "name": "upgradeToAndCall",
+        "outputs": [],
+        "stateMutability": "payable",
         "type": "function"
     },
     {
@@ -212,34 +341,6 @@ const ABI = [
             }
         ],
         "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "tokenAddress",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "tokenAmount",
-                "type": "uint256"
-            },
-            {
-                "internalType": "bool",
-                "name": "isToken",
-                "type": "bool"
-            },
-            {
-                "internalType": "uint256",
-                "name": "poolId",
-                "type": "uint256"
-            }
-        ],
-        "name": "contribute",
-        "outputs": [],
-        "stateMutability": "payable",
         "type": "function"
     },
     {
@@ -279,69 +380,6 @@ const ABI = [
             }
         ],
         "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_token",
-                "type": "address"
-            },
-            {
-                "internalType": "address",
-                "name": "_adminWallet",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_startTime",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_endTime",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_softCap",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_hardCap",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_minContribution",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_maxContribution",
-                "type": "uint256"
-            },
-            {
-                "internalType": "string[3]",
-                "name": "_otherInfo",
-                "type": "string[3]"
-            },
-            {
-                "internalType": "address[]",
-                "name": "tokens",
-                "type": "address[]"
-            },
-            {
-                "internalType": "uint256[]",
-                "name": "rates",
-                "type": "uint256[]"
-            }
-        ],
-        "name": "createPool",
-        "outputs": [],
-        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -456,19 +494,6 @@ const ABI = [
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_owner",
-                "type": "address"
-            }
-        ],
-        "name": "initialize",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
         "inputs": [],
         "name": "owner",
         "outputs": [
@@ -560,13 +585,6 @@ const ABI = [
     },
     {
         "inputs": [],
-        "name": "renounceOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
         "name": "totalContributer",
         "outputs": [
             {
@@ -592,34 +610,16 @@ const ABI = [
         "type": "function"
     },
     {
-        "inputs": [
+        "inputs": [],
+        "name": "UPGRADE_INTERFACE_VERSION",
+        "outputs": [
             {
-                "internalType": "address",
-                "name": "newOwner",
-                "type": "address"
+                "internalType": "string",
+                "name": "",
+                "type": "string"
             }
         ],
-        "name": "transferOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "newImplementation",
-                "type": "address"
-            },
-            {
-                "internalType": "bytes",
-                "name": "data",
-                "type": "bytes"
-            }
-        ],
-        "name": "upgradeToAndCall",
-        "outputs": [],
-        "stateMutability": "payable",
+        "stateMutability": "view",
         "type": "function"
     }
 ];
@@ -1570,58 +1570,30 @@ const ECET_ABI = [
     }
 ];
 
-window.exchangeTokenForOBS = async function (contractAddress, account, tokenAddress, paymentAmount, isToken, tokenDecimal) {
+window.createPool = async function (contractAddress, account, _token, _adminWallet, _startTime, _endTime, _softCap, _hardCap, _minContribution, _maxContribution, _otherInfo, tokens, rates) {
     try {
         if (window.ethereum != undefined) {
             window.web3 = new Web3(window.ethereum);
             var contract = new web3.eth.Contract(ABI, contractAddress);
-            const apiKey = 'G1UK1YU9WKC7I4MJ2Q5RSPGPZWHMQ7JHTV';
-            const averageGasPrice = await fetch(`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${apiKey}`)
-                .then(response => response.json())
-                .then(data => data.result.SafeGasPrice);
-            const gasPrice = web3.utils.toWei(averageGasPrice.toString(), 'gwei');
+            const gasPrice = await web3.eth.getGasPrice();
             if (contract !== null) {
-                if (isToken == false) {
-                    var gasEstimate = await contract.methods.exchangeTokensForOBSTokens(tokenAddress, paymentAmount, isToken, tokenDecimal).estimateGas({ from: account, value: paymentAmount });
-                    const tx = {
-                        from: account,
-                        to: contractAddress,
-                        gas: gasEstimate,
-                        gasPrice: gasPrice,
-                        value: paymentAmount
-                    };
-                    var txHash = await contract.methods.exchangeTokensForOBSTokens(tokenAddress, paymentAmount, isToken, tokenDecimal).send(tx);
-                    var receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);
-                    while (receipt == null) {
-                        await sleep(1000);
-                        receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);
-                    }
-                    var result = `{
+                var gasEstimate = await contract.methods.createPool(_token, _adminWallet, _startTime, _endTime, _softCap, _hardCap, _minContribution, _maxContribution, _otherInfo, tokens, rates).estimateGas({ from: account });
+                const tx = {
+                    from: account,
+                    gas: gasEstimate,
+                    gasPrice: gasPrice
+                };
+                var txHash = await contract.methods.createPool(_token, _adminWallet, _startTime, _endTime, _softCap, _hardCap, _minContribution, _maxContribution, _otherInfo, tokens, rates).send(tx);
+                var receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);
+                while (receipt == null) {
+                    await sleep(1000);
+                    receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);
+                }
+                var result = `{
                                 "status": ${receipt.status},
                                 "transactionHash": "${txHash.transactionHash}"
                              }`;
-                    return result;
-                }
-                else {
-                    var gasEstimate = await contract.methods.exchangeTokensForOBSTokens(tokenAddress, paymentAmount, isToken, tokenDecimal).estimateGas({ from: account });
-                    const tx = {
-                        from: account,
-                        to: contractAddress,
-                        gas: gasEstimate,
-                        gasPrice: gasPrice
-                    };
-                    var txHash = await contract.methods.exchangeTokensForOBSTokens(tokenAddress, paymentAmount, isToken, tokenDecimal).send(tx);
-                    var receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);
-                    while (receipt == null) {
-                        await sleep(1000);
-                        receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);
-                    }
-                    var result = `{
-                                "status": ${receipt.status},
-                                "transactionHash": "${txHash.transactionHash}"
-                             }`;
-                    return result;
-                }
+                return result;
             }
         }
     } catch (e) {

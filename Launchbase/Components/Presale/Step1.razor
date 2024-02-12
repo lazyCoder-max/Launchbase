@@ -62,17 +62,28 @@
                         <MudRadio Color="Color.Primary" Value="1">MATIC</MudRadio>
                     </MudItem>
                     <MudItem xs="12">
-                        @if(_tokenState.Value.ApproveStatus.Status == Store.TokenUseCase.TaskStatus.Processing)
+                        @if (_tokenState.Value.ApproveStatus.Status == Store.TokenUseCase.TaskStatus.Processing)
                         {
                             <MudProgressCircular Color="Color.Primary" Indeterminate="true" Class="items-center justify-center" />
                         }
                         else
                         {
-                            <button type="button"
-                                    class="mx-auto w-4\/5 flex items-center justify-center inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    @onclick="MoveToNextStep">
-                                Approve
-                            </button>
+                            @if (isApproved)
+                            {
+                                <button type="button"
+                                        class="mx-auto w-4\/5 flex items-center justify-center inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                        @onclick="MoveToNextStep">
+                                    Next Step
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="button"
+                                        class="mx-auto w-4\/5 flex items-center justify-center inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                        @onclick="ApproveToken">
+                                    Approve
+                                </button>
+                            }
                         }
                     </MudItem>
                 </MudGrid>

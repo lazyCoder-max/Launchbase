@@ -182,11 +182,18 @@
                                 </button>
                             </MudItem>
                             <MudItem xs="2" Class="pt-10">
-                                <button type="button"
-                                        class="mx-auto w-full flex inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                        @onclick="Submit">
-                                    Submit
-                                </button>
+                                @if(Presale.PresaleState.Value.CreateStatus.Status == Store.PresaleUseCase.TaskStatus.Processing)
+                                {
+                                    <MudProgressCircular Color="Color.Primary" Indeterminate="true" Class="items-center justify-center" />
+                                }
+                                else
+                                {
+                                    <button type="button"
+                                            class="mx-auto w-full flex inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                            @onclick="Submit">
+                                        Submit
+                                    </button>
+                                }
                             </MudItem>
                         </MudGrid>
                         
