@@ -1,0 +1,61 @@
+﻿@page "/token"
+@rendermode InteractiveServer
+<MudSnackbarProvider />
+<PageTitle>Token</PageTitle>
+<div class="pb-10 menu-font">
+    <div class="p-24 lg:pl-32 lg:pr-32">
+        <div class="w-full grid grid-cols-1 lg:grid-cols-1 gap-4">
+            <h6 class="text-white text-xl font-bold lg:text-3xl text-center px-2 py-4 w-full mx-auto -mt-1">
+                CREATE TOKEN
+            </h6>
+            <div class="w-full grid grid-cols-1 lg:grid-cols-1 gap-10">
+                <div class="mx auto rounded-md bg-hr w-full border-1  shadow-lg items-center justify-between" style="border:1px">
+                    <div class="mt-1 w-full p-4">
+                        <div class="mt-4 ">
+                            <MudGrid Spacing="1">
+                                <MudItem xs="12">
+                                    <p class=" text-white">Name *</p>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <input type="text" title="" required placeholder="Ex: Ethereum"
+                                           class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="tokenName" />
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <p class=" text-white">Symbol *</p>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <input type="text" title="" required placeholder="Ex: ETH"
+                                           class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="tokenSymbol" />
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <p class=" text-white">Decimals *</p>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <input type="text" title="" required placeholder="Ex: 18"
+                                           class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="tokenDecimals" />
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <p class=" text-white">Total Supply *</p>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <input type="text" title="" required placeholder="Ex: 1000000000000000000"
+                                           class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="totalSupply" />
+                                </MudItem>
+                                <MudItem xs="12"> 
+                                    <button type="button"
+                                            class="mx-auto w-4\/5 flex items-center justify-center inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                            >
+                                        Create Token
+                                    </button>
+                                </MudItem>
+                            </MudGrid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@code {
+
+}

@@ -1,0 +1,115 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider />
+<MudSnackbarProvider />
+<MudLayout>
+    <div class="min-h-screen bg-pr overflow-x-hidden ">
+        <div data-rk>
+            <style>
+                [data-rk] {
+                    --rk-blurs-modalOverlay: blur(0px);
+                    --rk-fonts-body: SFRounded, ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                    --rk-radii-actionButton: 9999px;
+                    --rk-radii-connectButton: 12px;
+                    --rk-radii-menuButton: 12px;
+                    --rk-radii-modal: 24px;
+                    --rk-radii-modalMobile: 28px;
+                    --rk-colors-accentColor: #74d0f1;
+                    --rk-colors-accentColorForeground: #FFF;
+                    --rk-colors-actionButtonBorder: rgba(0, 0, 0, 0.04);
+                    --rk-colors-actionButtonBorderMobile: rgba(0, 0, 0, 0.06);
+                    --rk-colors-actionButtonSecondaryBackground: rgba(0, 0, 0, 0.06);
+                    --rk-colors-closeButton: rgba(60, 66, 66, 0.8);
+                    --rk-colors-closeButtonBackground: rgba(0, 0, 0, 0.06);
+                    --rk-colors-connectButtonBackground: #FFF;
+                    --rk-colors-connectButtonBackgroundError: #FF494A;
+                    --rk-colors-connectButtonInnerBackground: linear-gradient(0deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.06));
+                    --rk-colors-connectButtonText: #25292E;
+                    --rk-colors-connectButtonTextError: #FFF;
+                    --rk-colors-connectionIndicator: #30E000;
+                    --rk-colors-downloadBottomCardBackground: linear-gradient(126deg, rgba(255, 255, 255, 0) 9.49%, rgba(171, 171, 171, 0.04) 71.04%), #FFFFFF;
+                    --rk-colors-downloadTopCardBackground: linear-gradient(126deg, rgba(171, 171, 171, 0.2) 9.49%, rgba(255, 255, 255, 0) 71.04%), #FFFFFF;
+                    --rk-colors-error: #FF494A;
+                    --rk-colors-generalBorder: rgba(0, 0, 0, 0.06);
+                    --rk-colors-generalBorderDim: rgba(0, 0, 0, 0.03);
+                    --rk-colors-menuItemBackground: rgba(60, 66, 66, 0.1);
+                    --rk-colors-modalBackdrop: rgba(0, 0, 0, 0.3);
+                    --rk-colors-modalBackground: #FFF;
+                    --rk-colors-modalBorder: transparent;
+                    --rk-colors-modalText: #25292E;
+                    --rk-colors-modalTextDim: rgba(60, 66, 66, 0.3);
+                    --rk-colors-modalTextSecondary: rgba(60, 66, 66, 0.6);
+                    --rk-colors-profileAction: #FFF;
+                    --rk-colors-profileActionHover: rgba(255, 255, 255, 0.5);
+                    --rk-colors-profileForeground: rgba(60, 66, 66, 0.06);
+                    --rk-colors-selectedOptionBorder: rgba(60, 66, 66, 0.1);
+                    --rk-colors-standby: #FFD641;
+                    --rk-shadows-connectButton: 0px 4px 12px rgba(0, 0, 0, 0.1);
+                    --rk-shadows-dialog: 0px 8px 32px rgba(0, 0, 0, 0.32);
+                    --rk-shadows-profileDetailsAction: 0px 2px 6px rgba(37, 41, 46, 0.04);
+                    --rk-shadows-selectedOption: 0px 2px 6px rgba(0, 0, 0, 0.24);
+                    --rk-shadows-selectedWallet: 0px 2px 6px rgba(0, 0, 0, 0.12);
+                    --rk-shadows-walletLogo: 0px 2px 16px rgba(0, 0, 0, 0.16);
+                }
+            </style>
+            @*  *@
+            <MudAppBar Style="background:transparent; box-shadow:none; justify-content:center; position:absolute" Elevation="1">
+                <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"
+                               OnClick="@((e) => DrawerToggle())" />
+                @if (isConnected)
+                {
+                    if (!string.IsNullOrEmpty(chainLogoUrl))
+                    {
+                        <MudAvatar Style="background-color:#1B1E29" Size="Size.Small">
+                            <MudImage Src="@chainLogoUrl"></MudImage>
+                        </MudAvatar>
+                    }
+
+                    <MudText Typo="Typo.body2" Class="w-full flex items-center justify-between pl-2">
+                        @chainName
+                    </MudText>
+                }
+
+                <div class=" w-full flex items-center justify-between pr-8">
+                    <div class=" flex space-x-2 justify-center">
+                    </div>
+                    <div class="flex space-x-2 justify-center">
+                        @if (!isConnected)
+                        {
+                            <button type="button"
+                                    class="inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                    @onclick="ConnectWalletAsync">
+                                Connect Wallet
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button"
+                                    class="inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                    @onclick="DisconnectWalletAsync">
+                                Disconnect
+                            </button>
+                        }
+                    </div>
+                </div>
+                <MudSpacer />
+            </MudAppBar>
+            <MudDrawer @bind-Open="@_drawerOpen" Class="md:w-full" Style="background-color:#000000;" Elevation="2">
+                <NavMenu />
+            </MudDrawer>
+            <MudMainContent>
+                @Body
+            </MudMainContent>
+        </div>
+    </div>
+</MudLayout>
+@code {
+    bool _drawerOpen = true;
+    const string cube = @"<svg style=""width:24px;height:24px"" viewBox=""0 0 24 24"">
+    <path fill=""currentColor"" d=""M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"" />
+</svg>";
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}

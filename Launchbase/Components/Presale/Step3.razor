@@ -1,0 +1,194 @@
+﻿@rendermode InteractiveServer
+<MudSnackbarProvider />
+<h6 class="text-white text-xl font-bold lg:text-3xl text-center px-2 py-4 w-full mx-auto -mt-1">
+    CREATE LAUNCHPAD
+</h6>
+<div class="w-full grid grid-cols-1 lg:grid-cols-1 gap-4">
+    <MudItem>
+        <MudTimeline TimelineOrientation="TimelineOrientation.Horizontal" TimelinePosition="TimelinePosition.Top" Reverse="true">
+            <MudTimelineItem>
+                <MudText Style="color:#ffff">Verify Token</MudText>
+            </MudTimelineItem>
+            <MudTimelineItem>
+                <MudText Style="color:#ffff">DeFi Launchpad Info</MudText>
+            </MudTimelineItem>
+            <MudTimelineItem DotStyle="background-color: #6DC4E3">
+                <MudText Style="color:#ffff">Add Additional Info</MudText>
+            </MudTimelineItem>
+            <MudTimelineItem>
+                <MudText Style="color:#ffff">Finish</MudText>
+            </MudTimelineItem>
+        </MudTimeline>
+    </MudItem>
+    <div class="w-full grid grid-cols-1 lg:grid-cols-1 gap-10">
+        <div class="mx auto rounded-md bg-hr w-full border-1  shadow-lg items-center justify-between" style="border:1px">
+            <div class="mt-1 w-full p-4">
+                <div class="flex flex-col items-center">
+                    <h1 class="text-white text-xl lg:text-3xl text-center px-2 py-10 w-fit mx-auto -mt-7">
+                        Let people know who you are
+                    </h1>
+                </div>
+                <div class="mt-4 ">
+                    <MudGrid Spacing="1">
+                        <MudItem xs="6">
+                            <MudItem xs="12">
+                                <p>
+                                    <span class="text-white">Logo URL</span>
+                                    <span class="text-danger">*</span>
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <input type="text" title="" required placeholder="e.g. https://i.ibb.co/pvyN7PB/testimage.png"
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.LogoUrl" />
+                            </MudItem>
+                        </MudItem>
+                        <MudItem xs="6">
+                            <MudItem xs="12">
+                                <p>
+                                    <span class="text-white">Banner Image URL</span>
+                                    <span class="text-danger">*</span>
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <input type="text" title="" required placeholder="e.g. https://i.ibb.co/QjW6pvx/testbanner.png"
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.BannerUrl" />
+                            </MudItem>
+                        </MudItem>
+                        <MudItem xs="6">
+                            <MudItem xs="12">
+                                <p>
+                                    <span class="text-white">Website</span>
+                                    <span class="text-danger">*</span>
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <input type="text" title="" required placeholder="e.g. https://example.com"
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.WebsiteLink" />
+                            </MudItem>
+                        </MudItem>
+                        <MudItem xs="6">
+                            <MudItem xs="12">
+                                <p>
+                                    <span class="text-white">Facebook</span>
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <input type="text" title="" required placeholder="e.g. https://www.facebook.com/"
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.FacebookLink" />
+                            </MudItem>
+                        </MudItem>
+                        <MudItem xs="6">
+                            <MudItem xs="12">
+                                <p>
+                                    <span class="text-white">Twitter</span>
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <input type="text" title="" required placeholder="e.g. https://twitter.com/EvercraftOfficial/"
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.TwitterLink" />
+                            </MudItem>
+                        </MudItem>
+                        <MudItem xs="6">
+                            <MudItem xs="12">
+                                <p>
+                                    <span class="text-white">Github</span>
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <input type="text" title="" required placeholder="e.g. https://github.com/"
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.GithubLink" />
+                            </MudItem>
+                        </MudItem>
+                        <MudItem xs="6">
+                            <MudItem xs="12">
+                                <p>
+                                    <span class="text-white">Telegram</span>
+                                    <span class="text-danger">*</span>
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <input type="text" title="" required placeholder="e.g. https://t.me/EvercraftOfficial"
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.TelegramLink" />
+                            </MudItem>
+                        </MudItem>
+                        <MudItem xs="6">
+                            <MudItem xs="12">
+                                <p>
+                                    <span class="text-white">Instagram</span>
+                                    <span class="text-danger">*</span>
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <input type="text" title="" required placeholder="e.g. https://www.instagram.com/"
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.InstagramLink" />
+                            </MudItem>
+                        </MudItem>
+                        <MudItem xs="6">
+                            <MudItem xs="12">
+                                <p>
+                                    <span class="text-white">Discord</span>
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <input type="text" title="" required placeholder="e.g. https://discord.com/"
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.DiscordLink" />
+                            </MudItem>
+                        </MudItem>
+                        <MudItem xs="6">
+                            <MudItem xs="12">
+                                <p>
+                                    <span class="text-white">Reddit</span>
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <input type="text" title="" required placeholder="e.g. https://reddit.com/"
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.RedditLink" />
+                            </MudItem>
+                        </MudItem>
+                        <MudItem xs="6">
+                            <MudItem xs="12">
+                                <p>
+                                    <span class="text-white">Youtube Video</span>
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <input type="text" title="" required placeholder="e.g. https://youtube.com/watch"
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.YoutubeLink" />
+                            </MudItem>
+                        </MudItem>
+                        <MudItem xs="12">
+                            <MudItem xs="12">
+                                <p>
+                                    <span class="text-white">Description</span>
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <MudTextField T="string" Label="Describe your project" Class="text-white" Variant="Variant.Filled" @bind-Text="Presale.PresaleState.Value.Description" Lines="3" />
+                            </MudItem>
+                        </MudItem>
+                        <MudItem xs="4">
+                        </MudItem>
+                        <MudItem xs="2" Class="pt-10">
+                            <button type="button"
+                                    class="mx-auto w-full flex inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                    @onclick="Presale.BackToPreviousStep">
+                                Back
+                            </button>
+                        </MudItem>
+                        <MudItem xs="2" Class="pt-10">
+                            <button type="button"
+                                    class="mx-auto w-full flex inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                    @onclick="Presale.JumpToNextStep">
+                                Continue
+                            </button>
+                        </MudItem>
+
+                    </MudGrid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@code {
+
+}

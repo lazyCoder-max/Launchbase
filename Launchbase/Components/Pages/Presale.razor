@@ -1,0 +1,39 @@
+﻿@page "/presale"
+@rendermode InteractiveServer
+<MudSnackbarProvider />
+<PageTitle>Presale</PageTitle>
+<div class="pb-10 menu-font">
+    <div class="p-24 lg:pl-32 lg:pr-32">
+        <div class="w-full grid grid-cols-1 lg:grid-cols-1 gap-4">
+            @switch(step)
+            {
+                case 1:
+                    <Step1 Presale="this"/>
+                    break;
+                case 2:
+                    <Step2 Presale="this"/>
+                    break;
+                case 3:
+                    <Step3 Presale="this" />
+                    break;
+                case 4:
+                    <Step4 Presale="this" />
+                    break;
+            }
+            
+            <div className="mt-4">
+                <h3 class="text-white text-l">
+                    Disclaimer: The information provided shall not in any way
+                    constitute a recommendation as to whether you should invest in
+                    any product discussed. We accept no liability for any loss
+                    occasioned to any person acting or refraining from action as a
+                    result of any material provided or published.
+                </h3>
+                <center><p class="text-white">©️ Launchbase est. 2018 . All rights reserved</p></center>
+            </div>
+        </div>
+    </div>
+</div>
+@code {
+
+}
