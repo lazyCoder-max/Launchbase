@@ -14,36 +14,36 @@
                                     <MudItem xs="12">
                                         <MudGrid>
                                             <MudItem xs="2">
-                                                <MudImage Src="/images/binance-coin.svg" Alt="token" Class="rounded-lg" Width="50" Height="50"></MudImage>
+                                                <MudImage Src="@Pool.LogoUrl" Alt="token" Class="rounded-lg" Width="50" Height="50"></MudImage>
                                             </MudItem>
                                             <MudItem xs="7">
                                                 <MudGrid>
                                                     <MudItem xs="12">
-                                                        <p class="text-white text-4xl font-bold text-left">Token Name</p>
+                                                        <p class="text-white text-4xl font-bold text-left">@Pool.PoolTitle</p>
                                                     </MudItem>
                                                     <MudItem xs="1">
-                                                        <MudLink Href="#">
+                                                        <MudLink Href="@Pool.WebsiteLink">
                                                             <MudIcon Icon="@websiteIcon" Style="color:white" Size="Size.Small">
 
                                                             </MudIcon>
                                                         </MudLink>
                                                     </MudItem>
                                                     <MudItem xs="1">
-                                                        <MudLink Href="#">
+                                                        <MudLink Href="@Pool.TelegramLink">
                                                             <MudIcon Icon="@telegramIcon" Style="color:white" Size="Size.Medium">
 
                                                             </MudIcon>
                                                         </MudLink>
                                                     </MudItem>
                                                     <MudItem xs="1">
-                                                        <MudLink Href="#">
+                                                        <MudLink Href="@Pool.TwitterLink">
                                                             <MudIcon Icon="@twitterIcon" Style="color:white" Size="Size.Medium">
 
                                                             </MudIcon>
                                                         </MudLink>
                                                     </MudItem>
                                                     <MudItem xs="1">
-                                                        <MudLink Href="#">
+                                                        <MudLink Href="@Pool.InstagramLink">
                                                             <MudIcon Icon="@instagramIcon" Style="color:white" Size="Size.Medium">
 
                                                             </MudIcon>
@@ -51,8 +51,8 @@
                                                     </MudItem>
                                                 </MudGrid>
                                             </MudItem>
-                                            <MudItem xs="3">
-                                                <MudChip Color="Color.Primary" Class="align-content-end">Presale</MudChip>
+                                            <MudItem xs="3" Class="pl-10">
+                                                <MudChip Color="Color.Primary">Presale</MudChip>
                                             </MudItem>
                                         </MudGrid>
                                     </MudItem>
@@ -62,26 +62,12 @@
                                                 <MudGrid>
                                                     <MudItem xs="3">
                                                         <p class="text-white text-xl font-bold">
-                                                            Presale Address
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="9" Class="pr-15">
-                                                        <p class="text-info text-right text-xl font-bold">
-                                                            Logo URL
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="3">
-                                                        <p class="text-white text-xl font-bold">
                                                             Token Name
                                                         </p>
                                                     </MudItem>
                                                     <MudItem xs="9" Class="pr-15">
                                                         <p class="text-white text-right text-xl font-bold">
-                                                            Logo URL
+                                                            @Pool.Token.Name
                                                         </p>
                                                     </MudItem>
                                                 </MudGrid>
@@ -95,7 +81,7 @@
                                                     </MudItem>
                                                     <MudItem xs="9" Class="pr-15">
                                                         <p class="text-white text-right text-xl font-bold">
-                                                            Logo URL
+                                                            @Pool.Token.Symbol
                                                         </p>
                                                     </MudItem>
                                                 </MudGrid>
@@ -109,7 +95,7 @@
                                                     </MudItem>
                                                     <MudItem xs="9" Class="pr-15">
                                                         <p class="text-white text-right text-xl font-bold">
-                                                            Logo URL
+                                                            @Pool.Token.Decimals
                                                         </p>
                                                     </MudItem>
                                                 </MudGrid>
@@ -123,7 +109,7 @@
                                                     </MudItem>
                                                     <MudItem xs="9" Class="pr-15">
                                                         <p class="text-info text-right text-xl font-bold">
-                                                            Logo URL
+                                                            @Pool.Token.Address
                                                         </p>
                                                     </MudItem>
                                                 </MudGrid>
@@ -137,21 +123,7 @@
                                                     </MudItem>
                                                     <MudItem xs="9" Class="pr-15">
                                                         <p class="text-white text-right text-xl font-bold">
-                                                            Logo URL
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="3">
-                                                        <p class="text-white text-xl font-bold">
-                                                            Presale Rate
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="9" Class="pr-15">
-                                                        <p class="text-white text-right text-xl font-bold">
-                                                            Logo URL
+                                                            @Pool.Token.TotalSupply
                                                         </p>
                                                     </MudItem>
                                                 </MudGrid>
@@ -165,7 +137,7 @@
                                                     </MudItem>
                                                     <MudItem xs="9" Class="pr-15">
                                                         <p class="text-white text-right text-xl font-bold">
-                                                            Logo URL
+                                                            @Pool.SoftCap
                                                         </p>
                                                     </MudItem>
                                                 </MudGrid>
@@ -179,7 +151,7 @@
                                                     </MudItem>
                                                     <MudItem xs="9" Class="pr-15">
                                                         <p class="text-white text-right text-xl font-bold">
-                                                            Logo URL
+                                                            @Pool.HardCap
                                                         </p>
                                                     </MudItem>
                                                 </MudGrid>
@@ -193,7 +165,7 @@
                                                     </MudItem>
                                                     <MudItem xs="8" Class="pr-15">
                                                         <p class="text-white text-right text-xl font-bold">
-                                                            Logo URL
+                                                            @Pool.StartTime
                                                         </p>
                                                     </MudItem>
                                                 </MudGrid>
@@ -207,12 +179,20 @@
                                                     </MudItem>
                                                     <MudItem xs="9" Class="pr-15">
                                                         <p class="text-white text-right text-xl font-bold">
-                                                            Logo URL
+                                                            @Pool.EndTime
                                                         </p>
                                                     </MudItem>
                                                 </MudGrid>
                                             </MudItem>
-
+                                            <MudItem xs="12">
+                                                <MudGrid>
+                                                    <MudItem xs="12" Class="pr-15">
+                                                        <p class="text-white text-left text-xl font-medium">
+                                                            @Pool.Description
+                                                        </p>
+                                                    </MudItem>
+                                                </MudGrid>
+                                            </MudItem>
 
                                         </MudGrid>
                                     </MudItem>
@@ -226,17 +206,28 @@
                                 <div class="mt-4 ">
                                     <MudGrid>
                                         <MudItem xs="12">
-                                            <MudImage Src="/images/ama.jpeg" ObjectFit="ObjectFit.Cover" Alt="token" Height="50"></MudImage>
+                                            <MudImage Src="@Pool.BannerUrl" ObjectFit="ObjectFit.Cover" Alt="token" Height="50"></MudImage>
                                         </MudItem>
                                         <MudItem xs="12">
                                             <p class="text-white text-center text-2xl font-bold">
-                                                STATUS
+                                                @if (Pool.State == Services.Web3.Dtos.PoolState.InUse)
+                                                {
+                                                    <MudChip Color="Color.Success">Active</MudChip>
+                                                }
+                                                else if (Pool.State == Services.Web3.Dtos.PoolState.Completed)
+                                                {
+                                                    <MudChip Color="Color.Warning">Completed</MudChip>
+                                                }
+                                                else if (Pool.State == Services.Web3.Dtos.PoolState.NotStarted)
+                                                {
+                                                    <MudChip Color="Color.Error">Not Started</MudChip>
+                                                }
                                             </p>
                                         </MudItem>
                                         <MudItem xs="12">
-                                            <MudProgressLinear Color="Color.Primary" Rounded="true" Size="Size.Large" Value="25">
+                                            <MudProgressLinear Color="Color.Primary" Rounded="true" Size="Size.Large" Value="double.Parse(Pool.RaisedPercentage.ToString())">
                                                 <MudText Typo="Typo.caption" Style="color:white">
-                                                    <b>25%</b>
+                                                    <b>@Pool.RaisedPercentage</b>
                                                 </MudText>
                                             </MudProgressLinear>
                                         </MudItem>

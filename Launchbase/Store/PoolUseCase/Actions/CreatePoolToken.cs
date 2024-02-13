@@ -4,7 +4,7 @@ using Microsoft.JSInterop;
 using Launchbase.Services.Interfaces;
 using Launchbase.Services;
 
-namespace Launchbase.Store.PresaleUseCase.Actions
+namespace Launchbase.Store.PoolUseCase.Actions
 {
     public class CreatePoolToken
     {
@@ -63,13 +63,14 @@ namespace Launchbase.Store.PresaleUseCase.Actions
                                         $"{action.pool.Description}",
                                         $"{action.pool.WebsiteLink};" +
                                         $"{action.pool.FacebookLink};" +
-                                        $"{action.pool.FacebookLink};" +
+                                        $"{action.pool.TwitterLink};" +
                                         $"{action.pool.GithubLink};" +
                                         $"{action.pool.TelegramLink};" +
                                         $"{action.pool.InstagramLink};" +
                                         $"{action.pool.DiscordLink};" +
                                         $"{action.pool.RedditLink};" +
-                                        $"{action.pool.YoutubeLink}" 
+                                        $"{action.pool.YoutubeLink};" +
+                                        $"{action.pool.PoolTitle}" 
                                          };
                     string[] tokens = action.pool.Token.Currencies.Select(x=>x.Address).ToArray();
                     decimal[] rates = action.pool.Token.Currencies.Select(x=>x.Rate).ToArray();

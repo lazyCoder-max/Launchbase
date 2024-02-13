@@ -58,7 +58,7 @@ namespace Launchbase.Components.Presale
         }
         private void MoveToNextStep()
         {
-            Presale.PresaleState.Value.Token = _tokenState.Value;
+            Presale.PoolState.Value.Token = _tokenState.Value;
             Presale.JumpToNextStep();
         }
     }

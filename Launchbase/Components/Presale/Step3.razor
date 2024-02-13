@@ -30,6 +30,18 @@
                 </div>
                 <div class="mt-4 ">
                     <MudGrid Spacing="1">
+                        <MudItem xs="12">
+                            <MudItem xs="12">
+                                <p>
+                                    <span class="text-white">Title</span>
+                                    <span class="text-danger">*</span>
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <input type="text" title="" required placeholder="e.g. Launchbase Presale"
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PoolState.Value.PoolTitle" />
+                            </MudItem>
+                        </MudItem>
                         <MudItem xs="6">
                             <MudItem xs="12">
                                 <p>
@@ -39,7 +51,7 @@
                             </MudItem>
                             <MudItem xs="12">
                                 <input type="text" title="" required placeholder="e.g. https://i.ibb.co/pvyN7PB/testimage.png"
-                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.LogoUrl" />
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PoolState.Value.LogoUrl" />
                             </MudItem>
                         </MudItem>
                         <MudItem xs="6">
@@ -51,7 +63,7 @@
                             </MudItem>
                             <MudItem xs="12">
                                 <input type="text" title="" required placeholder="e.g. https://i.ibb.co/QjW6pvx/testbanner.png"
-                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.BannerUrl" />
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PoolState.Value.BannerUrl" />
                             </MudItem>
                         </MudItem>
                         <MudItem xs="6">
@@ -63,7 +75,7 @@
                             </MudItem>
                             <MudItem xs="12">
                                 <input type="text" title="" required placeholder="e.g. https://example.com"
-                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.WebsiteLink" />
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PoolState.Value.WebsiteLink" />
                             </MudItem>
                         </MudItem>
                         <MudItem xs="6">
@@ -74,7 +86,7 @@
                             </MudItem>
                             <MudItem xs="12">
                                 <input type="text" title="" required placeholder="e.g. https://www.facebook.com/"
-                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.FacebookLink" />
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PoolState.Value.FacebookLink" />
                             </MudItem>
                         </MudItem>
                         <MudItem xs="6">
@@ -85,7 +97,7 @@
                             </MudItem>
                             <MudItem xs="12">
                                 <input type="text" title="" required placeholder="e.g. https://twitter.com/EvercraftOfficial/"
-                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.TwitterLink" />
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PoolState.Value.TwitterLink" />
                             </MudItem>
                         </MudItem>
                         <MudItem xs="6">
@@ -96,7 +108,7 @@
                             </MudItem>
                             <MudItem xs="12">
                                 <input type="text" title="" required placeholder="e.g. https://github.com/"
-                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.GithubLink" />
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PoolState.Value.GithubLink" />
                             </MudItem>
                         </MudItem>
                         <MudItem xs="6">
@@ -108,7 +120,7 @@
                             </MudItem>
                             <MudItem xs="12">
                                 <input type="text" title="" required placeholder="e.g. https://t.me/EvercraftOfficial"
-                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.TelegramLink" />
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PoolState.Value.TelegramLink" />
                             </MudItem>
                         </MudItem>
                         <MudItem xs="6">
@@ -120,7 +132,7 @@
                             </MudItem>
                             <MudItem xs="12">
                                 <input type="text" title="" required placeholder="e.g. https://www.instagram.com/"
-                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.InstagramLink" />
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PoolState.Value.InstagramLink" />
                             </MudItem>
                         </MudItem>
                         <MudItem xs="6">
@@ -131,7 +143,7 @@
                             </MudItem>
                             <MudItem xs="12">
                                 <input type="text" title="" required placeholder="e.g. https://discord.com/"
-                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.DiscordLink" />
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PoolState.Value.DiscordLink" />
                             </MudItem>
                         </MudItem>
                         <MudItem xs="6">
@@ -142,7 +154,7 @@
                             </MudItem>
                             <MudItem xs="12">
                                 <input type="text" title="" required placeholder="e.g. https://reddit.com/"
-                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.RedditLink" />
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PoolState.Value.RedditLink" />
                             </MudItem>
                         </MudItem>
                         <MudItem xs="6">
@@ -153,7 +165,7 @@
                             </MudItem>
                             <MudItem xs="12">
                                 <input type="text" title="" required placeholder="e.g. https://youtube.com/watch"
-                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PresaleState.Value.YoutubeLink" />
+                                       class=" bg-pr border-none outline-none w-full px-2 py-2 text-white rounded-md" @bind="Presale.PoolState.Value.YoutubeLink" />
                             </MudItem>
                         </MudItem>
                         <MudItem xs="12">
@@ -163,7 +175,7 @@
                                 </p>
                             </MudItem>
                             <MudItem xs="12">
-                                <MudTextField T="string" Label="Describe your project" Class="text-white" Variant="Variant.Filled" @bind-Text="Presale.PresaleState.Value.Description" Lines="3" />
+                                <MudTextField T="string" Label="Describe your project" Class="text-white" Variant="Variant.Filled" @bind-Text="Presale.PoolState.Value.Description" Lines="3" />
                             </MudItem>
                         </MudItem>
                         <MudItem xs="4">

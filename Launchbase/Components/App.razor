@@ -28,14 +28,11 @@
 
 <body style="background-color:#1B1E29">
     <Routes @rendermode="@InteractiveServer" />
-    <script src="https://cdn.jsdelivr.net/npm/json-bigint@1.0.0/lib/parse.min.js"></script>
-    <script>
-        // Now JSONbig should be available
-        const JSONbig = window.json_parse;
 
-        // Your code here
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.1/web3.min.js"
+            integrity="sha512-GKw4QT/RccGJIwQxY3MhyiQ5pHrhQ8SuKFEafV+WcpOvtz7iYFQuQGFCvmGlHLctJTe8KrWU1FqvF7VOkEAJtw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
     <script src="js/exchange.js"></script>
     <script src="js/internalCommands.js"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>

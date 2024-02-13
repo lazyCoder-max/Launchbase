@@ -1,18 +1,16 @@
-﻿using Fluxor;
-using Launchbase.Services.Web3.Dtos;
-using Launchbase.Store.TokenUseCase;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Launchbase.Store.PoolUseCase
+namespace Launchbase.Services.Web3.Dtos
 {
-    [FeatureState]
-    public record PoolToken
+    public class PoolInfo
     {
-        public PoolToken()
-        {
-            
-        }
-        public Token Token { get; set; }
+        public TokenInfo Token { get; set; }
         public string? PoolTitle { get; set; } = "";
+        public string? AdminWallet { get; set; }
         public decimal? SoftCap { get; set; } = 0;
         public decimal? HardCap { get; set; } = 0;
         public decimal? MinimumBuy { get; set; } = 0;
@@ -31,23 +29,17 @@ namespace Launchbase.Store.PoolUseCase
         public string? RedditLink { get; set; } = "";
         public string? YoutubeLink { get; set; } = "";
         public string? Description { get; set; }
-        public List<PoolInfo> Pools { get; set; } = new List<PoolInfo>();
-        public PoolStatus<TaskStatus> FetchStatus { get; set; } = new() { Status = TaskStatus.Ideal };
-        public PoolStatus<TaskStatus> CreateStatus { get; set; } = new() { Status = TaskStatus.Ideal };
-        public PoolStatus<TaskStatus> ContributeStatus { get; set; } = new() { Status = TaskStatus.Ideal };
-    }
-   
-    public struct PoolStatus<T>
-    {
+        public decimal TotalRaised { get; set; }
+        public decimal RaisedPercentage { get; set; } = 0;
+        public List<TokenInfo> Currencies { get; set; }
+        public PoolState State { get; set; }
 
-        public T Status { get; set; }
-        public string Message { get; set; }
     }
-    public enum TaskStatus
+    public enum PoolState
     {
-        Created = 0,
-        Processing = 1,
-        Ideal = 2,
-        Failed = 3
+        InUse = 0,
+        Completed = 1,
+        Cancelled = 2,
+        NotStarted = 3
     }
 }

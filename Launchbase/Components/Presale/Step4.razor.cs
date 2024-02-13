@@ -1,5 +1,5 @@
 ﻿using Fluxor;
-using Launchbase.Store.PresaleUseCase.Actions;
+using Launchbase.Store.PoolUseCase.Actions;
 using Launchbase.Store.TokenUseCase.Actions;
 using MetaMask.Blazor;
 using Microsoft.AspNetCore.Components;
@@ -14,21 +14,21 @@ namespace Launchbase.Components.Presale
         public Pages.Presale Presale { get; set; }
         [Inject] IJSRuntime javaScript { get; set; }
         [Inject] IMetaMaskService metamask { get; set; }
+        [Inject] private NavigationManager _NavigationManager { get; set; }
         [Inject] private ISnackbar Snackbr { get; set; }
         [Inject] private IDispatcher _dispatcher { get; set; }
         [Inject] private IActionSubscriber _actionSubscriber { get; set; }
         public void Submit()
         {
-            _dispatcher.Dispatch(new CreatePoolToken.Action(javaScript, metamask, Presale.PresaleState.Value));
+            _dispatcher.Dispatch(new CreatePoolToken.Action(javaScript, metamask, Presale.PoolState.Value));
             _actionSubscriber.SubscribeToAction<CreatePoolToken.ResultAction>(this, action =>
             {
-                if (action.PoolStatus.Status == Store.PresaleUseCase.TaskStatus.Created)
+                if (action.PoolStatus.Status == Store.PoolUseCase.TaskStatus.Created)
                 {
                     Snackbr.Add(action.PoolStatus.Message, Severity.Success);
-
-                    StateHasChanged();
+                    _NavigationManager.NavigateTo("/sale-list");
                 }
-                else if (action.PoolStatus.Status == Store.PresaleUseCase.TaskStatus.Failed)
+                else if (action.PoolStatus.Status == Store.PoolUseCase.TaskStatus.Failed)
                 {
                     Snackbr.Add(action.PoolStatus.Message, Severity.Warning);
                     StateHasChanged();

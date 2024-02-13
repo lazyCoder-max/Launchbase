@@ -1600,6 +1600,21 @@ window.createPool = async function (contractAddress, account, _token, _adminWall
         return e.message;
     }
 }
+window.getAllPools = async function (contractAddress, account) {
+    try {
+        if (window.ethereum != undefined) {
+            window.web3 = new Web3(window.ethereum);
+            var contract = new web3.eth.Contract(ABI, contractAddress);
+            if (contract !== null) {
+                var contract = new web3.eth.Contract(ABI, contractAddress);
+                var data = await contract.methods.getAllPools().call();
+                return data;
+            }
+        }
+    } catch (e) {
+        return e.message;
+    }
+}
 window.modifySupportedTokens = async function (contractAddress, account, tokenAddress, isActive, rate) {
     try {
         if (window.ethereum != undefined) {

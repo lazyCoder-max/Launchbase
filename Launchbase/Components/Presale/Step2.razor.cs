@@ -32,7 +32,7 @@ namespace Launchbase.Components.Presale
             var selectedCurrency = Currencies.Where(x=>x.IsSelected==true).ToList();
             if(selectedCurrency.Count>=1 )
             {
-                Presale.PresaleState.Value.Token.Currencies = selectedCurrency;
+                Presale.PoolState.Value.Token.Currencies = selectedCurrency;
                 if (ValidateData())
                     return;
                 Presale.JumpToNextStep();
@@ -45,43 +45,43 @@ namespace Launchbase.Components.Presale
         }
         private bool ValidateData()
         {
-            if (Presale.PresaleState.Value.SoftCap <= 1)
+            if (Presale.PoolState.Value.SoftCap <= 1)
             {
                 Snackbr.Add("Softcap must be >=1", Severity.Warning);
                 return true;
             }
-            var hardCap = Presale.PresaleState.Value.SoftCap * 15 / 100;
-            if (Presale.PresaleState.Value.HardCap <= hardCap)
+            var hardCap = Presale.PoolState.Value.SoftCap * 15 / 100;
+            if (Presale.PoolState.Value.HardCap <= hardCap)
             {
                 Snackbr.Add("Hardcap must be less than the softcap", Severity.Warning);
                 return true;
             }
-            if (Presale.PresaleState.Value.MinimumBuy <= 0)
+            if (Presale.PoolState.Value.MinimumBuy <= 0)
             {
                 Snackbr.Add("Minimum buy must be >=1", Severity.Warning);
                 return true;
             }
-            if (Presale.PresaleState.Value.MaximumBuy <= 0)
+            if (Presale.PoolState.Value.MaximumBuy <= 0)
             {
                 Snackbr.Add("Maximum buy must be >=1", Severity.Warning);
                 return true;
             }
-            if (Presale.PresaleState.Value.MaximumBuy <= Presale.PresaleState.Value.MinimumBuy)
+            if (Presale.PoolState.Value.MaximumBuy <= Presale.PoolState.Value.MinimumBuy)
             {
                 Snackbr.Add("Maximum buy must be >= Minimum Buy", Severity.Warning);
                 return true;
             }
-            if (Presale.PresaleState.Value.StartTime.HasValue== false)
+            if (Presale.PoolState.Value.StartTime.HasValue== false)
             {
                 Snackbr.Add("Start time needs to be filled", Severity.Warning);
                 return true;
             }
-            if (Presale.PresaleState.Value.EndTime.HasValue == false)
+            if (Presale.PoolState.Value.EndTime.HasValue == false)
             {
                 Snackbr.Add("End time needs to be filled", Severity.Warning);
                 return true;
             }
-            if (Presale.PresaleState.Value.EndTime.Value <= Presale.PresaleState.Value.StartTime.Value)
+            if (Presale.PoolState.Value.EndTime.Value <= Presale.PoolState.Value.StartTime.Value)
             {
                 Snackbr.Add("Start time needs to be < End time", Severity.Warning);
                 return true;

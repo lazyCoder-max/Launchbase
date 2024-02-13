@@ -39,7 +39,7 @@
                                 </MudItem>
                                 <MudItem xs="10" Class="pr-15">
                                     <p class="text-info text-right">
-                                        @Presale.PresaleState.Value.Token.TotalSupply
+                                        @Presale.PoolState.Value.Token.TotalSupply
                                     </p>
                                 </MudItem>
                             </MudGrid>
@@ -53,7 +53,7 @@
                                 </MudItem>
                                 <MudItem xs="10" Class="pr-15">
                                     <p class="text-info text-right">
-                                        @Presale.PresaleState.Value.Token.Name
+                                        @Presale.PoolState.Value.Token.Name
                                     </p>
                                 </MudItem>
                             </MudGrid>
@@ -67,7 +67,7 @@
                                 </MudItem>
                                 <MudItem xs="10" Class="pr-15">
                                     <p class="text-info text-right">
-                                        @Presale.PresaleState.Value.Token.Symbol
+                                        @Presale.PoolState.Value.Token.Symbol
                                     </p>
                                 </MudItem>
                             </MudGrid>
@@ -81,7 +81,7 @@
                                 </MudItem>
                                 <MudItem xs="10" Class="pr-15">
                                     <p class="text-info text-right">
-                                        @Presale.PresaleState.Value.Token.Decimals
+                                        @Presale.PoolState.Value.Token.Decimals
                                     </p>
                                 </MudItem>
                             </MudGrid>
@@ -95,7 +95,7 @@
                                 </MudItem>
                                 <MudItem xs="10" Class="pr-15">
                                     <p class="text-info text-right">
-                                        @Presale.PresaleState.Value.SoftCap
+                                        @Presale.PoolState.Value.SoftCap
                                     </p>
                                 </MudItem>
                            </MudGrid>
@@ -109,7 +109,7 @@
                                 </MudItem>
                                 <MudItem xs="10" Class="pr-15">
                                     <p class="text-info text-right">
-                                        @Presale.PresaleState.Value.HardCap
+                                        @Presale.PoolState.Value.HardCap
                                     </p>
                                 </MudItem>
                             </MudGrid>
@@ -123,7 +123,7 @@
                                 </MudItem>
                                 <MudItem xs="10" Class="pr-15">
                                     <p class="text-info text-right">
-                                        @Presale.PresaleState.Value.MinimumBuy
+                                        @Presale.PoolState.Value.MinimumBuy
                                     </p>
                                 </MudItem>
                             </MudGrid>
@@ -137,7 +137,7 @@
                                 </MudItem>
                                 <MudItem xs="10" Class="pr-15">
                                     <p class="text-info text-right">
-                                        @Presale.PresaleState.Value.MaximumBuy
+                                        @Presale.PoolState.Value.MaximumBuy
                                     </p>
                                 </MudItem>
                             </MudGrid>
@@ -151,7 +151,7 @@
                                 </MudItem>
                                 <MudItem xs="10" Class="pr-15">
                                     <p class="text-info text-right">
-                                        @Presale.PresaleState.Value.StartTime.Value.ToString()
+                                        @Presale.PoolState.Value.StartTime.Value.ToString()
                                     </p>
                                 </MudItem>
                            </MudGrid>
@@ -165,7 +165,7 @@
                                 </MudItem>
                                 <MudItem xs="10" Class="pr-15">
                                     <p class="text-info text-right">
-                                        @Presale.PresaleState.Value.EndTime.Value.ToString()
+                                        @Presale.PoolState.Value.EndTime.Value.ToString()
                                     </p>
                                 </MudItem>
                             </MudGrid>
@@ -182,7 +182,7 @@
                                 </button>
                             </MudItem>
                             <MudItem xs="2" Class="pt-10">
-                                @if(Presale.PresaleState.Value.CreateStatus.Status == Store.PresaleUseCase.TaskStatus.Processing)
+                                @if (Presale.PoolState.Value.CreateStatus.Status == Store.PoolUseCase.TaskStatus.Processing)
                                 {
                                     <MudProgressCircular Color="Color.Primary" Indeterminate="true" Class="items-center justify-center" />
                                 }

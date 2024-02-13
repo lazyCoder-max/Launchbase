@@ -2,6 +2,10 @@
 using Newtonsoft.Json;
 using Launchbase.Services.Interfaces;
 using Launchbase.Services.Web3.Dtos;
+using Nethereum.Contracts.QueryHandlers.MultiCall;
+using System.Text.Json;
+using Newtonsoft.Json.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Launchbase.Services.Web3
 {
@@ -116,6 +120,83 @@ namespace Launchbase.Services.Web3
                 return new() { Result = decimal.Parse(result.ToString()), Status = true, Message = result.ToString() };
             }
             return new() { Status = false, Message = result.ToString() };
+        }
+        public async Task<Response<List<PoolInfo>>> GetAllPoolAsync()
+        {
+            try
+            {
+                object[] args;
+                args = new object[2] { _contractAddress, _accountAddress};
+                var result = await javascript.InvokeAsync<object>("getAllPools", args);
+                List<JsonElement> elements = new List<JsonElement>();
+                if (result.GetType() == typeof(JsonElement))
+                {
+                    var jsonString = System.Text.Json.JsonSerializer.Serialize(result);
+                    var jsonElement = JsonDocument.Parse(jsonString).RootElement;
+                    elements.AddRange(jsonElement.EnumerateArray());
+                }
+                List<PoolInfo> pools = new List<PoolInfo>();
+                if (elements != null)
+                {
+                    foreach ( var element in elements)
+                    {
+                        var otherInfo = new string[3];
+                        var pool = new PoolInfo();
+                        Token token = new(javascript, element[0].GetString(), _accountAddress);
+                        using (JsonDocument document = JsonDocument.Parse(element[11].GetRawText()))
+                        {
+                            pool.Currencies = new();
+                            foreach (JsonElement currencyElement in document.RootElement.EnumerateArray())
+                            {
+                                pool.Currencies.Add(new()
+                                {
+                                    Address = currencyElement[0].GetString(),
+                                    IsToken = currencyElement[1].GetBoolean(),
+                                    Rate = decimal.Parse(currencyElement[2].GetString()),
+                                });
+                            }
+                        }
+                        var tokenInfo = await token.GetTokenInformation(element[0].GetString());
+                        pool.Token = tokenInfo.Result;
+                        pool.Token.Address = element[0].GetString();
+                        pool.AdminWallet = element[1].GetString();
+                        pool.StartTime = (DateTimeOffset.FromUnixTimeSeconds(long.Parse(element[2].GetString())).LocalDateTime);
+                        pool.EndTime = (DateTimeOffset.FromUnixTimeSeconds(long.Parse(element[3].GetString())).LocalDateTime);
+                        pool.TotalRaised = decimal.Parse(element[4].GetString());
+                        pool.SoftCap = decimal.Parse(element[5].GetString());
+                        pool.HardCap = decimal.Parse(element[6].GetString());
+                        pool.State = (PoolState)int.Parse(element[7].GetString());
+                        pool.MinimumBuy = decimal.Parse(element[8].GetString());
+                        pool.MaximumBuy = decimal.Parse(element[9].GetString());
+                        JArray jsonArray = JArray.Parse(element[10].GetRawText());
+                        
+                        var otherInfoRaw = jsonArray[2].ToString().Split(';');
+                        var imageRaw = jsonArray[0].ToString().Split(';');
+                        pool.LogoUrl = imageRaw[0].ToString();
+                        pool.BannerUrl = imageRaw[1].ToString();
+                        pool.Description = jsonArray[1].ToString();
+                        pool.WebsiteLink = otherInfoRaw[0];
+                        pool.FacebookLink = otherInfoRaw[1];
+                        pool.TwitterLink = otherInfoRaw[2];
+                        pool.GithubLink = otherInfoRaw[3];
+                        pool.TelegramLink = otherInfoRaw[4];
+                        pool.InstagramLink = otherInfoRaw[5];
+                        pool.DiscordLink = otherInfoRaw[6];
+                        pool.RedditLink = otherInfoRaw[7];
+                        pool.YoutubeLink = otherInfoRaw[8];
+                        pool.PoolTitle = otherInfoRaw[9];
+                        if (pool.TotalRaised>0)
+                            pool.RaisedPercentage = (pool.SoftCap.Value / pool.TotalRaised) * 100;
+                        pools.Add(pool);
+                    }
+                    return new() { Status = true, Message = result.ToString(), Result = pools };
+                }
+                return new() { Status = false, Message = result.ToString() };
+            }
+            catch (Exception ex)
+            {
+                return new() { Status = false, Message = ex.Message };
+            }
         }
 
         public async Task<Response<ContractResponse>> CreatePoolAsync(string tokenAddress,string adminWallet, long startTime, long endTime, decimal softCap, decimal hardCap, decimal minContribution, decimal maxContribution, string[] otherInfo, string[] tokens, decimal[] rates)
