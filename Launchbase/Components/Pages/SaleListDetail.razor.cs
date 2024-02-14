@@ -75,6 +75,7 @@ namespace Launchbase.Components.Pages
             Contribution.PoolId = Pool.PoolId;
             Contribution.CurrencyAddress = SelectedCurrency.Address;
             Contribution.IsCurrencyToken = Pool.Token.IsToken;
+            Contribution.Decimals = Pool.Token.Decimals;
             _dispatcher.Dispatch(new Contribute.Action(javaScript, metamask, Contribution));
             _actionSubscriber.SubscribeToAction<Contribute.ResultAction>(this, action =>
             {

@@ -39,20 +39,49 @@ namespace Launchbase.Store.PoolUseCase.Actions
                     var spenderAddress = Program.Configuration.GetRequiredSection("ContractAddress").GetValue<string>("Address");
                     ILaunchBaseServices services = new LaunchBaseServices(action.JSRuntime, spenderAddress, address);
 
-                    var isApproved = await services.Pool.ContributeAsync(address, action.pool.CurrencyAddress, action.pool.Amount.Value, action.pool.IsCurrencyToken.Value, action.pool.PoolId.Value);
-                    if (isApproved.Status)
+                    if (action.pool.IsCurrencyToken.Value)
                     {
-
-                        dispatcher.Dispatch(new ResultAction(new()
+                        var isApproved = await services.Token.Approve(spenderAddress, action.pool.CurrencyAddress, action.pool.Amount.Value, action.pool.Decimals.Value);
+                        if (isApproved.Status)
                         {
-                            Message = isApproved.Status == true ? "Contribution Minted!" : "Transaction Failed!",
-                            Status = isApproved.Status == true ? TaskStatus.Created : TaskStatus.Failed,
+                            var isContributed = await services.Pool.ContributeAsync(address, action.pool.CurrencyAddress, action.pool.Amount.Value, action.pool.IsCurrencyToken.Value, action.pool.PoolId.Value);
+                            if (isContributed.Status)
+                            {
+
+                                dispatcher.Dispatch(new ResultAction(new()
+                                {
+                                    Message = isContributed.Status == true ? "Contribution Minted!" : "Transaction Failed!",
+                                    Status = isContributed.Status == true ? TaskStatus.Created : TaskStatus.Failed,
+                                }
+                                ));
+                            }
+                            else
+                            {
+                                dispatcher.Dispatch(new ResultAction(new() { Message = "Contribution Failed!", Status = TaskStatus.Failed }));
+                            }
                         }
-                        ));
+                        else
+                        {
+                            dispatcher.Dispatch(new ResultAction(new() { Message = "Contribution Failed!", Status = TaskStatus.Failed }));
+                        }
                     }
                     else
                     {
-                        dispatcher.Dispatch(new ResultAction(new() { Message = "Contribution Failed!", Status = TaskStatus.Failed }));
+                        var isContributed = await services.Pool.ContributeAsync(address, action.pool.CurrencyAddress, action.pool.Amount.Value, action.pool.IsCurrencyToken.Value, action.pool.PoolId.Value);
+                        if (isContributed.Status)
+                        {
+
+                            dispatcher.Dispatch(new ResultAction(new()
+                            {
+                                Message = isContributed.Status == true ? "Contribution Minted!" : "Transaction Failed!",
+                                Status = isContributed.Status == true ? TaskStatus.Created : TaskStatus.Failed,
+                            }
+                            ));
+                        }
+                        else
+                        {
+                            dispatcher.Dispatch(new ResultAction(new() { Message = "Contribution Failed!", Status = TaskStatus.Failed }));
+                        }
                     }
                 }
                 catch (Exception e)
