@@ -274,24 +274,24 @@
                                                 </MudGrid>
                                             </MudItem>
                                         </MudItem>
-                                        
+
                                         <MudItem xs="12">
                                             <MudItem xs="12">
-                                              <MudGrid>
-                                                  <MudItem xs="6">
+                                                <MudGrid>
+                                                    <MudItem xs="6">
                                                         <p class="text-white text-start font-bold">
                                                             Payment Method
                                                         </p>
-                                                  </MudItem>
+                                                    </MudItem>
                                                     <MudItem xs="6">
                                                         <p class="text-white text-start font-bold">
                                                             Amount
                                                         </p>
                                                     </MudItem>
-                                              </MudGrid>
+                                                </MudGrid>
                                             </MudItem>
                                             <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled">
-                                                <MudSelect Class="text-white" T="string" TextChanged="@SelectionChanged" Variant="Variant.Filled" Text="@SelectedCurrencySymbol">
+                                                <MudSelect Class="text-white" T="string" TextChanged="@SelectionChanged" Variant="Variant.Filled" Text="@SelectedCurrencySymbol" AdornmentIcon="@Icons.Material.Filled.ArrowDropDown" AdornmentColor="Color.Primary">
                                                     @foreach (var currency in Pool.Currencies)
                                                     {
                                                         @if (currency.Address == "0x0000000000000000000000000000000000001010")
@@ -309,18 +309,37 @@
                                                     }
                                                 </MudSelect>
                                                 <input type="text" title="" required placeholder="0"
-                                                       class="bg-pr border-none outline-none w-24 px-2 py-2 text-white rounded-md" @bind-value="Contribution.Amount" />
+                                                       class="bg-pr border-none outline-none w-24 px-2 py-2 text-white rounded-md" @bind-value="Contribution.Amount" @oninput="CalculateEarningAsync" />
                                                 <MudButton OnClick="SetMaximumContribution">MAX</MudButton>
                                             </MudButtonGroup>
                                         </MudItem>
+                                        <MudItem xs="12">
+                                            <MudItem xs="12">
+                                                <MudGrid>
+                                                    <MudItem xs="6">
+                                                        <p class="text-white text-start font-bold">
+                                                            You will Recieve
+                                                        </p>
+                                                    </MudItem>
+                                                    <MudItem xs="6">
+                                                        <p class="text-white text-start font-bold">
+                                                            @Earning @Pool.Token.Symbol
+                                                        </p>
+                                                    </MudItem>
+                                                </MudGrid>
+                                            </MudItem>
+                                        </MudItem>
                                         <MudItem xs="12" Class="pt-5">
-                                            @if(Pool.State == Services.Web3.Dtos.PoolState.InUse)
+                                            @if (Pool.State == Services.Web3.Dtos.PoolState.InUse)
                                             {
-                                                <button type="button"
-                                                        class="mx-auto w-full flex items-center justify-center inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                                        @onclick="Contribute">
-                                                    SUBMIT
-                                                </button>
+                                                @if (SelectedCurrency != null)
+                                                {
+                                                    <button type="button"
+                                                            class="mx-auto w-full flex items-center justify-center inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                                            @onclick="Contribute">
+                                                        SUBMIT
+                                                    </button>
+                                                }
                                             }
                                         </MudItem>
                                     </MudGrid>
@@ -329,7 +348,7 @@
                         </div>
                     </MudItem>
                 </MudGrid>
-                @if (_ContributionState.Value.Contributors.Count>=1)
+                @if (_ContributionState.Value.Contributors.Count >= 1)
                 {
                     <MudDataGrid Items="@_ContributionState.Value.Contributors" Filterable="false" SortMode="@SortMode.None" Groupable="false">
                         <Columns>

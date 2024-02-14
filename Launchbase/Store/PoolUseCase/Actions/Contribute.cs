@@ -44,7 +44,7 @@ namespace Launchbase.Store.PoolUseCase.Actions
                         var isApproved = await services.Token.Approve(spenderAddress, action.pool.CurrencyAddress, action.pool.Amount.Value, action.pool.Decimals.Value);
                         if (isApproved.Status)
                         {
-                            var isContributed = await services.Pool.ContributeAsync(address, action.pool.CurrencyAddress, action.pool.Amount.Value, action.pool.IsCurrencyToken.Value, action.pool.PoolId.Value);
+                            var isContributed = await services.Pool.ContributeAsync(address, action.pool.CurrencyAddress, action.pool.Amount.Value, action.pool.IsCurrencyToken.Value, action.pool.PoolId.Value,double.Parse(action.pool.Decimals.Value.ToString()));
                             if (isContributed.Status)
                             {
 

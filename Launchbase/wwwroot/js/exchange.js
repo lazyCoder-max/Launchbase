@@ -16,102 +16,6 @@ const ABI = [
         "inputs": [
             {
                 "internalType": "address",
-                "name": "tokenAddress",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "tokenAmount",
-                "type": "uint256"
-            },
-            {
-                "internalType": "bool",
-                "name": "isToken",
-                "type": "bool"
-            },
-            {
-                "internalType": "uint256",
-                "name": "poolId",
-                "type": "uint256"
-            }
-        ],
-        "name": "contribute",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_token",
-                "type": "address"
-            },
-            {
-                "internalType": "address",
-                "name": "_adminWallet",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_startTime",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_endTime",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_softCap",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_hardCap",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_minContribution",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_maxContribution",
-                "type": "uint256"
-            },
-            {
-                "internalType": "string[3]",
-                "name": "_otherInfo",
-                "type": "string[3]"
-            },
-            {
-                "internalType": "address[]",
-                "name": "tokens",
-                "type": "address[]"
-            },
-            {
-                "internalType": "uint256[]",
-                "name": "rates",
-                "type": "uint256[]"
-            },
-            {
-                "internalType": "bool[]",
-                "name": "isTokens",
-                "type": "bool[]"
-            }
-        ],
-        "name": "createPool",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
                 "name": "implementation",
                 "type": "address"
             }
@@ -203,19 +107,6 @@ const ABI = [
         "type": "event"
     },
     {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_owner",
-                "type": "address"
-            }
-        ],
-        "name": "initialize",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
         "anonymous": false,
         "inputs": [
             {
@@ -279,26 +170,6 @@ const ABI = [
         "type": "event"
     },
     {
-        "inputs": [],
-        "name": "renounceOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "newOwner",
-                "type": "address"
-            }
-        ],
-        "name": "transferOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
         "anonymous": false,
         "inputs": [
             {
@@ -312,21 +183,16 @@ const ABI = [
         "type": "event"
     },
     {
-        "inputs": [
+        "inputs": [],
+        "name": "UPGRADE_INTERFACE_VERSION",
+        "outputs": [
             {
-                "internalType": "address",
-                "name": "newImplementation",
-                "type": "address"
-            },
-            {
-                "internalType": "bytes",
-                "name": "data",
-                "type": "bytes"
+                "internalType": "string",
+                "name": "",
+                "type": "string"
             }
         ],
-        "name": "upgradeToAndCall",
-        "outputs": [],
-        "stateMutability": "payable",
+        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -390,6 +256,34 @@ const ABI = [
     {
         "inputs": [
             {
+                "internalType": "address",
+                "name": "tokenAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "tokenAmount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bool",
+                "name": "isToken",
+                "type": "bool"
+            },
+            {
+                "internalType": "uint256",
+                "name": "poolId",
+                "type": "uint256"
+            }
+        ],
+        "name": "contribute",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "internalType": "uint256",
                 "name": "",
                 "type": "uint256"
@@ -409,6 +303,74 @@ const ABI = [
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_token",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_adminWallet",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_startTime",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_endTime",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_softCap",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_hardCap",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_minContribution",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_maxContribution",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string[3]",
+                "name": "_otherInfo",
+                "type": "string[3]"
+            },
+            {
+                "internalType": "address[]",
+                "name": "tokens",
+                "type": "address[]"
+            },
+            {
+                "internalType": "uint256[]",
+                "name": "rates",
+                "type": "uint256[]"
+            },
+            {
+                "internalType": "bool[]",
+                "name": "isTokens",
+                "type": "bool[]"
+            }
+        ],
+        "name": "createPool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -574,6 +536,19 @@ const ABI = [
         "type": "function"
     },
     {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_owner",
+                "type": "address"
+            }
+        ],
+        "name": "initialize",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
         "inputs": [],
         "name": "owner",
         "outputs": [
@@ -670,6 +645,13 @@ const ABI = [
     },
     {
         "inputs": [],
+        "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
         "name": "totalPool",
         "outputs": [
             {
@@ -682,16 +664,34 @@ const ABI = [
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "UPGRADE_INTERFACE_VERSION",
-        "outputs": [
+        "inputs": [
             {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
             }
         ],
-        "stateMutability": "view",
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newImplementation",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes",
+                "name": "data",
+                "type": "bytes"
+            }
+        ],
+        "name": "upgradeToAndCall",
+        "outputs": [],
+        "stateMutability": "payable",
         "type": "function"
     }
 ];
@@ -1696,6 +1696,26 @@ window.contribute = async function (contractAddress, account, _token, _amount, i
                         gas: gasEstimate,
                         gasPrice: gasPrice,
                         value: _amount
+                    };
+                    var txHash = await contract.methods.contribute(_token, _amount, isToken, poolId).send(tx);
+                    var receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);
+                    while (receipt == null) {
+                        await sleep(1000);
+                        receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);
+                    }
+                    var result = `{
+                                "status": ${receipt.status},
+                                "transactionHash": "${txHash.transactionHash}"
+                             }`;
+                    return result;
+                }
+                else {
+                    var gasEstimate = await contract.methods.contribute(_token, _amount, isToken, poolId).estimateGas({ from: account});
+                    const tx = {
+                        from: account,
+                        to: contractAddress,
+                        gas: gasEstimate,
+                        gasPrice: gasPrice
                     };
                     var txHash = await contract.methods.contribute(_token, _amount, isToken, poolId).send(tx);
                     var receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);

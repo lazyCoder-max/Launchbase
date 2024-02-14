@@ -16,40 +16,12 @@ namespace Launchbase.Services.Web3
         private readonly IJSRuntime javascript;
         private readonly string _contractAddress;
         private readonly string _accountAddress;
-        private readonly Lazy<Task<IJSObjectReference>> moduleTask;
         public Pool(IJSRuntime javascript, string contractAddress, string accountAddress)
         {
             this.javascript = javascript;
             _accountAddress = accountAddress;
             _contractAddress = contractAddress;
         }
-        public async Task<Response<ContractResponse>> Approve(string spenderAddress, string tokenAddress, decimal amount, decimal decimalResult)
-        {
-            try
-            {
-                double decimals = 0;
-                string convertedValue = "";
-                if (double.TryParse(decimalResult.ToString(), out decimals))
-                {
-                    var weiResult = double.Parse(amount.ToString()) * Math.Pow(10, decimals);
-                    convertedValue = weiResult.ToString("F0");
-                }
-                object[] args = new object[] { tokenAddress, _accountAddress, spenderAddress, convertedValue.ToString() };
-                var result = await javascript.InvokeAsync<object>("approvePayment", args);
-                if (result.ToString().Contains("status"))
-                {
-                    var finalResult = JsonConvert.DeserializeObject<ContractResponse>(result.ToString());
-                    return new() { Result = finalResult, Status = finalResult.status, Message = result.ToString() };
-                }
-                return new() { Status = false, Message = result.ToString() };
-            }
-            catch (Exception ex)
-            {
-                return new() { Status = false, Message = ex.Message };
-            }
-
-        }
-
         public async Task<Response<ContractResponse>> ContributeAsync(string account, string tokenAddress, decimal paymentAmount, bool isToken, int poolId, double decimals=16)
         {
             try
@@ -119,7 +91,6 @@ namespace Launchbase.Services.Web3
                                         IsToken = currencyElement[1].GetBoolean(),
                                         Rate = decimal.Parse(currencyElement[2].GetString()),
                                         Symbol = currencyInfo.Result.Symbol,
-                                        Name = currencyInfo.Result.Name,
                                         TotalSupply = currencyInfo.Result.TotalSupply,
                                         Decimals = currencyInfo.Result.Decimals
                                     });
@@ -202,7 +173,7 @@ namespace Launchbase.Services.Web3
                         var tokenInfo = await token.GetTokenInformation(element[4].GetString());
                         contributor.PoolId = int.Parse(element[0].GetString());
                         contributor.ContributorAddress = element[1].GetString();
-                        contributor.Amount = Nethereum.Web3.Web3.Convert.FromWei(System.Numerics.BigInteger.Parse(element[2].GetString()));
+                        contributor.Amount = Nethereum.Web3.Web3.Convert.FromWei(System.Numerics.BigInteger.Parse(element[2].GetString()),tokenInfo.Result.Decimals);
                         contributor.TimeStamp = (DateTimeOffset.FromUnixTimeSeconds(long.Parse(element[3].GetString())).LocalDateTime);
                         contributor.CurrencyUsed = tokenInfo.Result.Symbol;
                         contributors.Add(contributor);

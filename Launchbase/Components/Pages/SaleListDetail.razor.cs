@@ -3,6 +3,7 @@ using Launchbase.Services.Web3.Dtos;
 using Launchbase.Store.PoolUseCase;
 using Launchbase.Store.PoolUseCase.Actions;
 using Launchbase.Store.TokenUseCase;
+using Launchbase.Store.TokenUseCase.Actions;
 using MetaMask.Blazor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
@@ -31,6 +32,7 @@ namespace Launchbase.Components.Pages
         Contribution Contribution { get; set; }
         private TokenInfo SelectedCurrency { get; set; }
         private string SelectedCurrencySymbol { get; set; }
+        private decimal Earning { get; set; } = -1;
 
         protected override void OnInitialized()
         {
@@ -57,6 +59,22 @@ namespace Launchbase.Components.Pages
             });
             
         }
+        private void CalculateEarningAsync(ChangeEventArgs args)
+        {
+            if (args.Value?.ToString() != null)
+            {
+                string val = args.Value.ToString();
+                decimal decimalValue;
+                if(decimal.TryParse(val, out decimalValue))
+                {
+                    Earning = decimalValue * SelectedCurrency.Rate;
+                }
+            }
+            else
+            {
+                // Handle invalid input if needed
+            }
+        }
         private async Task SelectionChanged(string value)
         {
             SelectedCurrency = Pool.Currencies.FirstOrDefault(currency => currency.Address == value);
@@ -64,18 +82,19 @@ namespace Launchbase.Components.Pages
                 SelectedCurrencySymbol = "MATIC";
             else
                 SelectedCurrencySymbol = SelectedCurrency.Symbol;
+            CalculateEarningAsync(new ChangeEventArgs() { Value = Contribution.Amount.Value.ToString() });
         }
         private void SetMaximumContribution()
         {
             Contribution.Amount = Pool.MaximumBuy;
-
+            CalculateEarningAsync(new ChangeEventArgs() { Value= Contribution.Amount.Value.ToString()});
         }
         private void Contribute() 
         {
             Contribution.PoolId = Pool.PoolId;
             Contribution.CurrencyAddress = SelectedCurrency.Address;
-            Contribution.IsCurrencyToken = Pool.Token.IsToken;
-            Contribution.Decimals = Pool.Token.Decimals;
+            Contribution.IsCurrencyToken = SelectedCurrency.IsToken;
+            Contribution.Decimals = SelectedCurrency.Decimals;
             _dispatcher.Dispatch(new Contribute.Action(javaScript, metamask, Contribution));
             _actionSubscriber.SubscribeToAction<Contribute.ResultAction>(this, action =>
             {
