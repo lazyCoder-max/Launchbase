@@ -1346,6 +1346,12 @@ th {
 .mud-radio > .mud-radio-content {
     color: hsla(206,100%,73.3%,1) !important;
 }
+.mud-table-root .mud-table-head .mud-table-cell {
+    color:white !important;
+}
+.mud-table-root .mud-table-body .mud-table-cell {
+    color:white !important;
+}
     @media (min-width: 640px) {
         .sm\:-mx-6 {
             margin-left: -1.5rem;

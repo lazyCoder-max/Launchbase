@@ -96,6 +96,11 @@ const ABI = [
                 "internalType": "uint256[]",
                 "name": "rates",
                 "type": "uint256[]"
+            },
+            {
+                "internalType": "bool[]",
+                "name": "isTokens",
+                "type": "bool[]"
             }
         ],
         "name": "createPool",
@@ -123,19 +128,6 @@ const ABI = [
         "inputs": [],
         "name": "FailedInnerCall",
         "type": "error"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_owner",
-                "type": "address"
-            }
-        ],
-        "name": "initialize",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
     },
     {
         "inputs": [],
@@ -209,6 +201,19 @@ const ABI = [
         ],
         "name": "Contribution",
         "type": "event"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_owner",
+                "type": "address"
+            }
+        ],
+        "name": "initialize",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
         "anonymous": false,
@@ -328,30 +333,11 @@ const ABI = [
         "inputs": [
             {
                 "internalType": "uint256",
-                "name": "_poolid",
-                "type": "uint256"
-            }
-        ],
-        "name": "checkPoolState",
-        "outputs": [
-            {
-                "internalType": "enum Launchbase.PoolState",
-                "name": "",
-                "type": "uint8"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
                 "name": "",
                 "type": "uint256"
             }
         ],
-        "name": "contributors",
+        "name": "allContributors",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -383,11 +369,59 @@ const ABI = [
         "type": "function"
     },
     {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_poolid",
+                "type": "uint256"
+            }
+        ],
+        "name": "checkPoolState",
+        "outputs": [
+            {
+                "internalType": "enum Launchbase.PoolState",
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "contributorsByPoolId",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [],
         "name": "getAllPools",
         "outputs": [
             {
                 "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "id",
+                        "type": "uint256"
+                    },
                     {
                         "internalType": "address",
                         "name": "token",
@@ -477,6 +511,52 @@ const ABI = [
     {
         "inputs": [
             {
+                "internalType": "uint256",
+                "name": "_poolId",
+                "type": "uint256"
+            }
+        ],
+        "name": "getContributors",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "poolId",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "contributor",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "amount",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "timestamp",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "currencyUsed",
+                        "type": "address"
+                    }
+                ],
+                "internalType": "struct Launchbase.ContributorInfo[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "internalType": "address",
                 "name": "token",
                 "type": "address"
@@ -516,6 +596,11 @@ const ABI = [
         ],
         "name": "pools",
         "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "id",
+                "type": "uint256"
+            },
             {
                 "internalType": "address",
                 "name": "token",
@@ -578,19 +663,6 @@ const ABI = [
                 "internalType": "bytes32",
                 "name": "",
                 "type": "bytes32"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "totalContributer",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
             }
         ],
         "stateMutability": "view",
@@ -1570,20 +1642,24 @@ const ECET_ABI = [
     }
 ];
 
-window.createPool = async function (contractAddress, account, _token, _adminWallet, _startTime, _endTime, _softCap, _hardCap, _minContribution, _maxContribution, _otherInfo, tokens, rates) {
+window.createPool = async function (contractAddress, account, _token, _adminWallet, _startTime, _endTime, _softCap, _hardCap, _minContribution, _maxContribution, _otherInfo, tokens, rates, isTokens) {
     try {
         if (window.ethereum != undefined) {
             window.web3 = new Web3(window.ethereum);
             var contract = new web3.eth.Contract(ABI, contractAddress);
-            const gasPrice = await web3.eth.getGasPrice();
+            const apiKey = 'Y9SDE25YRER3NFFU6KGR25WZBNIS84IKNP';
+            const averageGasPrice = await fetch(`https://api.polygonscan.com/api?module=gastracker&action=gasoracle&apikey=${apiKey}`)
+                .then(response => response.json())
+                .then(data => data.result.FastGasPrice);
+            const gasPrice = web3.utils.toWei(averageGasPrice.toString(), 'gwei');
             if (contract !== null) {
-                var gasEstimate = await contract.methods.createPool(_token, _adminWallet, _startTime, _endTime, _softCap, _hardCap, _minContribution, _maxContribution, _otherInfo, tokens, rates).estimateGas({ from: account });
+                var gasEstimate = await contract.methods.createPool(_token, _adminWallet, _startTime, _endTime, _softCap, _hardCap, _minContribution, _maxContribution, _otherInfo, tokens, rates, isTokens).estimateGas({ from: account });
                 const tx = {
                     from: account,
                     gas: gasEstimate,
                     gasPrice: gasPrice
                 };
-                var txHash = await contract.methods.createPool(_token, _adminWallet, _startTime, _endTime, _softCap, _hardCap, _minContribution, _maxContribution, _otherInfo, tokens, rates).send(tx);
+                var txHash = await contract.methods.createPool(_token, _adminWallet, _startTime, _endTime, _softCap, _hardCap, _minContribution, _maxContribution, _otherInfo, tokens, rates, isTokens).send(tx);
                 var receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);
                 while (receipt == null) {
                     await sleep(1000);
@@ -1600,7 +1676,46 @@ window.createPool = async function (contractAddress, account, _token, _adminWall
         return e.message;
     }
 }
-window.getAllPools = async function (contractAddress, account) {
+window.contribute = async function (contractAddress, account, _token, _amount, isToken, poolId) {
+    try
+    {
+        if (window.ethereum != undefined) {
+            window.web3 = new Web3(window.ethereum);
+            var contract = new web3.eth.Contract(ABI, contractAddress);
+            const apiKey = 'Y9SDE25YRER3NFFU6KGR25WZBNIS84IKNP';
+            const averageGasPrice = await fetch(`https://api.polygonscan.com/api?module=gastracker&action=gasoracle&apikey=${apiKey}`)
+                .then(response => response.json())
+                .then(data => data.result.FastGasPrice);
+            const gasPrice = web3.utils.toWei(averageGasPrice.toString(), 'gwei');
+            if (contract !== null) {
+                if (isToken == false) {
+                    var gasEstimate = await contract.methods.contribute(_token, _amount, isToken, poolId).estimateGas({ from: account, value: _amount });
+                    const tx = {
+                        from: account,
+                        to: contractAddress,
+                        gas: gasEstimate,
+                        gasPrice: gasPrice,
+                        value: _amount
+                    };
+                    var txHash = await contract.methods.contribute(_token, _amount, isToken, poolId).send(tx);
+                    var receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);
+                    while (receipt == null) {
+                        await sleep(1000);
+                        receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);
+                    }
+                    var result = `{
+                                "status": ${receipt.status},
+                                "transactionHash": "${txHash.transactionHash}"
+                             }`;
+                    return result;
+                }
+            }
+        }
+    } catch (e) {
+        return e.message;
+    }
+}
+window.getAllPools = async function (contractAddress) {
     try {
         if (window.ethereum != undefined) {
             window.web3 = new Web3(window.ethereum);
@@ -1615,52 +1730,16 @@ window.getAllPools = async function (contractAddress, account) {
         return e.message;
     }
 }
-window.modifySupportedTokens = async function (contractAddress, account, tokenAddress, isActive, rate) {
+window.getContributors = async function (contractAddress, poolId) {
     try {
         if (window.ethereum != undefined) {
             window.web3 = new Web3(window.ethereum);
             var contract = new web3.eth.Contract(ABI, contractAddress);
-            const gasPrice = await web3.eth.getGasPrice();
-            var gasEstimate = await contract.methods.modifySupportedTokens(tokenAddress, isActive, rate).estimateGas({ from: account });
             if (contract !== null) {
-                const tx = {
-                    from: account,
-                    to: contractAddress,
-                    gas: gasEstimate,
-                    gasPrice: gasPrice,
-                };
-                var txHash = await contract.methods.modifySupportedTokens(tokenAddress, isActive, rate).send(tx);
-                var receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);
-                while (receipt == null) {
-                    await sleep(1000);
-                    receipt = await web3.eth.getTransactionReceipt(txHash.transactionHash);
-                }
-                return receipt;
+                var contract = new web3.eth.Contract(ABI, contractAddress);
+                var data = await contract.methods.getContributors(poolId).call();
+                return data;
             }
-        }
-    } catch (e) {
-        return e.message;
-    }
-}
-window.calculateEquivalentOBSAmount = async function (contractAddress, tokenAddress, paymentAmount) {
-    try {
-        if (window.ethereum != undefined) {
-            window.web3 = new Web3(window.ethereum);
-            var contract = new web3.eth.Contract(ABI, contractAddress);
-            var data = await contract.methods.calculateEquivalentOBSAmount(tokenAddress, paymentAmount).call();
-            return data;
-        }
-    } catch (e) {
-        return e.message;
-    }
-}
-window.getExchangeRates = async function (contractAddress, tokenAddress) {
-    try {
-        if (window.ethereum != undefined) {
-            window.web3 = new Web3(window.ethereum);
-            var contract = new web3.eth.Contract(ABI, contractAddress);
-            var data = await contract.methods.exchangeRates(tokenAddress).call();
-            return `${data}`;
         }
     } catch (e) {
         return e.message;
@@ -1673,10 +1752,10 @@ window.approvePayment = async (contractAddress, address, tokenAddress, amount) =
             window.web3 = new Web3(window.ethereum);
             var contract = new web3.eth.Contract(ERC_20ABI, contractAddress);
             if (contract !== null) {
-                const apiKey = 'G1UK1YU9WKC7I4MJ2Q5RSPGPZWHMQ7JHTV';
-                const averageGasPrice = await fetch(`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${apiKey}`)
+                const apiKey = 'Y9SDE25YRER3NFFU6KGR25WZBNIS84IKNP';
+                const averageGasPrice = await fetch(`https://api.polygonscan.com/api?module=gastracker&action=gasoracle&apikey=${apiKey}`)
                     .then(response => response.json())
-                    .then(data => data.result.SafeGasPrice);
+                    .then(data => data.result.FastGasPrice);
                 const gasPrice = web3.utils.toWei(averageGasPrice.toString(), 'gwei');
                 var gasLimit = await contract.methods.approve(tokenAddress, amount).estimateGas({ from: address });
                 var txHash = await contract.methods.approve(tokenAddress, amount).send({
@@ -1792,7 +1871,7 @@ window.GetTokenInformation = async (contractAddress) => {
             '"Name":"' + tokenName + '",' +
             '"Symbol":"' + tokenSymbol + '",' +
             '"TotalSupply":' + tokenTotalSupply + ',' +
-            '"Decimals":' + tokenDecimal +'' +
+            '"Decimals":' + tokenDecimal + '' +
             '}';
     } catch (e) {
         return '{' +

@@ -73,8 +73,9 @@ namespace Launchbase.Store.PoolUseCase.Actions
                                         $"{action.pool.PoolTitle}" 
                                          };
                     string[] tokens = action.pool.Token.Currencies.Select(x=>x.Address).ToArray();
+                    bool[] isTokens = action.pool.Token.Currencies.Select(x => x.IsToken).ToArray();
                     decimal[] rates = action.pool.Token.Currencies.Select(x=>x.Rate).ToArray();
-                    var isApproved = await services.Pool.CreatePoolAsync(action.pool.Token.Address,address,((DateTimeOffset)action.pool.StartTime).ToUnixTimeSeconds(), ((DateTimeOffset)action.pool.EndTime).ToUnixTimeSeconds(), action.pool.SoftCap.Value, action.pool.HardCap.Value, action.pool.MinimumBuy.Value, action.pool.MaximumBuy.Value, otherInfo, tokens, rates);
+                    var isApproved = await services.Pool.CreatePoolAsync(action.pool.Token.Address,address,((DateTimeOffset)action.pool.StartTime).ToUnixTimeSeconds(), ((DateTimeOffset)action.pool.EndTime).ToUnixTimeSeconds(), action.pool.SoftCap.Value, action.pool.HardCap.Value, action.pool.MinimumBuy.Value, action.pool.MaximumBuy.Value, otherInfo, tokens, rates, isTokens);
                     if (isApproved.Status)
                     {
 

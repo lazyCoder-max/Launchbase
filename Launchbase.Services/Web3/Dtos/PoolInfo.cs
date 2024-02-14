@@ -9,6 +9,7 @@ namespace Launchbase.Services.Web3.Dtos
     public class PoolInfo
     {
         public TokenInfo Token { get; set; }
+        public int? PoolId { get; set; }
         public string? PoolTitle { get; set; } = "";
         public string? AdminWallet { get; set; }
         public decimal? SoftCap { get; set; } = 0;

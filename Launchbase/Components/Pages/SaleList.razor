@@ -24,56 +24,56 @@
                                                 </MudItem>
                                                 <MudItem xs="6">
                                                     <MudItem xs="12">
-                                                        <MudText Typo="Typo.body1" Style="color:white">@pool.Token.Name</MudText>
-                                                        </MudItem>
-                                                        <MudItem xs="12">
-                                                            <MudLink Href="@pool.WebsiteLink">
-                                                                <MudIcon Icon="@websiteIcon" Style="color:white">
-                                                                </MudIcon>
-                                                            </MudLink>
-                                                        </MudItem>
+                                                        <p class="text-white font-bold text-l">@pool.PoolTitle</p>
+                                                    </MudItem>
+                                                    <MudItem xs="12">
+                                                        <MudLink Href="@pool.WebsiteLink">
+                                                            <MudIcon Icon="@websiteIcon" Style="color:white">
+                                                            </MudIcon>
+                                                        </MudLink>
+                                                    </MudItem>
 
-                                                    </MudItem>
-                                                    <MudItem xs="3">
-                                                        <MudChip Color="Color.Primary">Presale</MudChip>
-                                                        @if(pool.State == Services.Web3.Dtos.PoolState.InUse)
-                                                        {
-                                                          <MudChip Color="Color.Success">Active</MudChip>
-                                                        }
-                                                        else if(pool.State == Services.Web3.Dtos.PoolState.Completed)
-                                                        {
-                                                          <MudChip Color="Color.Warning">Completed</MudChip>
-                                                        }
-                                                        else if (pool.State == Services.Web3.Dtos.PoolState.NotStarted)
-                                                        {
-                                                            <MudChip Color="Color.Error">Not Started</MudChip>
-                                                        }
                                                 </MudItem>
-                                                </MudGrid>
-                                                <MudGrid xs="12" Class="pt-4">
-                                                    <MudItem xs="5">
-                                                        <MudItem>
-                                                            <MudText Typo="Typo.body1" Style="color:white">Total raised</MudText>
-                                                        </MudItem>
-                                                        <MudItem>
-                                                            <MudText Typo="Typo.body1" Style="color:white">Softcap</MudText>
-                                                        </MudItem>
-                                                        <MudItem>
-                                                            <MudText Typo="Typo.body1" Style="color:white">Hardcap</MudText>
-                                                        </MudItem>
-                                                        <MudItem>
-                                                            <MudText Typo="Typo.body1" Style="color:white">Min / Max Alloc</MudText>
-                                                        </MudItem>
-                                                        <MudItem Class="pt-2">
-                                                            <MudText Typo="Typo.body1" Style="color:white">Start Time:</MudText>
-                                                        </MudItem>
-                                                        <MudItem>
-                                                            <MudText Typo="Typo.body1" Style="color:white">End Time:</MudText>
-                                                        </MudItem>
+                                                <MudItem xs="3">
+                                                    <MudChip Color="Color.Primary">Presale</MudChip>
+                                                    @if (pool.State == Services.Web3.Dtos.PoolState.InUse)
+                                                    {
+                                                        <MudChip Color="Color.Success">Active</MudChip>
+                                                    }
+                                                    else if (pool.State == Services.Web3.Dtos.PoolState.Completed)
+                                                    {
+                                                        <MudChip Color="Color.Warning">Completed</MudChip>
+                                                    }
+                                                    else if (pool.State == Services.Web3.Dtos.PoolState.NotStarted)
+                                                    {
+                                                        <MudChip Color="Color.Error">Not Started</MudChip>
+                                                    }
+                                                </MudItem>
+                                            </MudGrid>
+                                            <MudGrid xs="12" Class="pt-4">
+                                                <MudItem xs="5">
+                                                    <MudItem>
+                                                        <MudText Typo="Typo.body1" Style="color:white">Total raised</MudText>
                                                     </MudItem>
-                                                    <MudItem xs="7">
-                                                        <MudItem>
-                                                            <MudText Typo="Typo.body1" Align="Align.End" Style="color:white"><strong>@pool.TotalRaised MATIC</strong></MudText>
+                                                    <MudItem>
+                                                        <MudText Typo="Typo.body1" Style="color:white">Softcap</MudText>
+                                                    </MudItem>
+                                                    <MudItem>
+                                                        <MudText Typo="Typo.body1" Style="color:white">Hardcap</MudText>
+                                                    </MudItem>
+                                                    <MudItem>
+                                                        <MudText Typo="Typo.body1" Style="color:white">Min / Max Alloc</MudText>
+                                                    </MudItem>
+                                                    <MudItem Class="pt-2">
+                                                        <MudText Typo="Typo.body1" Style="color:white">Start Time:</MudText>
+                                                    </MudItem>
+                                                    <MudItem>
+                                                        <MudText Typo="Typo.body1" Style="color:white">End Time:</MudText>
+                                                    </MudItem>
+                                                </MudItem>
+                                                <MudItem xs="7">
+                                                    <MudItem>
+                                                        <MudText Typo="Typo.body1" Align="Align.End" Style="color:white"><strong>@pool.TotalRaised MATIC</strong></MudText>
                                                     </MudItem>
                                                     <MudItem>
                                                         <MudText Typo="Typo.body1" Align="Align.End" Style="color:white"><strong>@pool.SoftCap MATIC</strong></MudText>
@@ -94,7 +94,7 @@
                                                 <MudItem xs="12">
                                                     <MudProgressLinear Color="Color.Primary" Rounded="true" Size="Size.Medium" Value="double.Parse(pool.RaisedPercentage.ToString())">
                                                         <MudText Typo="Typo.caption" Style="color:white">
-                                                            <b>@pool.RaisedPercentage%</b>
+                                                            <b>@pool.RaisedPercentage.ToString("0.00") %</b>
                                                         </MudText>
                                                     </MudProgressLinear>
 
@@ -102,7 +102,7 @@
                                                 <MudItem xs="12">
                                                     <MudButton Class="mx-auto w-full flex items-center justify-center inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" OnClick="@(()=> ViewDetail(pool))">
                                                         View Pool
-                                                   </MudButton>
+                                                    </MudButton>
                                                 </MudItem>
                                             </MudGrid>
                                         </div>
@@ -110,13 +110,13 @@
                                 </div>
 
                             </MudItem>
-                            
+
                         }
                     }
-                    
+
 
                 </MudGrid>
-               
+
             </div>
         </div>
     </div>
