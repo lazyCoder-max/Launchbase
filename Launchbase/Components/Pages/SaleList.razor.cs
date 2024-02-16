@@ -18,15 +18,18 @@ namespace Launchbase.Components.Pages
         [Inject] private IActionSubscriber _actionSubscriber { get; set; }
         [Inject] private IState<Store.PoolUseCase.PoolToken> PoolState { get; set; }
         [Inject] private NavigationManager _navigationManager { get; set; }
+        private bool IsLoading { get; set; } = true;
         protected async override Task OnAfterRenderAsync(bool firstRender)
         {
             if(firstRender)
             {
                 _dispatcher.Dispatch(new GetPool.Action(javaScript, metamask));
+                
                 _actionSubscriber.SubscribeToAction<GetPool.ResultAction>(this, action =>
                 {
                     if (action.PoolStatus.Status == Store.PoolUseCase.TaskStatus.Created)
                     {
+                        IsLoading = false;
                         StateHasChanged();
                     }
                 });

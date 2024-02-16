@@ -2,377 +2,364 @@
 @rendermode InteractiveServer
 <MudSnackbarProvider />
 <PageTitle>LAUNCHPAD LIST</PageTitle>
-<div class="pb-10 menu-font">
-    <div class="p-24 lg:pl-32 lg:pr-32">
-        <div class="w-full grid grid-cols-1 lg:grid-cols-1 gap-4">
-            <div class="w-full grid grid-cols-1 lg:grid-cols-1 gap-10">
-                <MudGrid Spacing="1">
-                    <MudItem xs="8">
-                        <div class="mx auto rounded-md bg-hr w-full border-1  shadow-lg justify-between" style="border:1px">
-                            <div class="mt-1 w-full p-4">
-                                <div class="mt-4 ">
-                                    <MudItem xs="12">
-                                        <MudGrid>
-                                            <MudItem xs="2">
-                                                <MudImage Src="@Pool.LogoUrl" Alt="token" Class="rounded-lg" Width="50" Height="50"></MudImage>
-                                            </MudItem>
-                                            <MudItem xs="7">
-                                                <MudGrid>
-                                                    <MudItem xs="12">
-                                                        <p class="text-white text-4xl font-bold text-left">@Pool.PoolTitle</p>
-                                                    </MudItem>
-                                                    <MudItem xs="1">
-                                                        <MudLink Href="@Pool.WebsiteLink">
-                                                            <MudIcon Icon="@websiteIcon" Style="color:white" Size="Size.Small">
-
-                                                            </MudIcon>
-                                                        </MudLink>
-                                                    </MudItem>
-                                                    <MudItem xs="1">
-                                                        <MudLink Href="@Pool.TelegramLink">
-                                                            <MudIcon Icon="@telegramIcon" Style="color:white" Size="Size.Medium">
-
-                                                            </MudIcon>
-                                                        </MudLink>
-                                                    </MudItem>
-                                                    <MudItem xs="1">
-                                                        <MudLink Href="@Pool.TwitterLink">
-                                                            <MudIcon Icon="@twitterIcon" Style="color:white" Size="Size.Medium">
-
-                                                            </MudIcon>
-                                                        </MudLink>
-                                                    </MudItem>
-                                                    <MudItem xs="1">
-                                                        <MudLink Href="@Pool.InstagramLink">
-                                                            <MudIcon Icon="@instagramIcon" Style="color:white" Size="Size.Medium">
-
-                                                            </MudIcon>
-                                                        </MudLink>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudItem xs="3" Class="pl-10">
-                                                <MudChip Color="Color.Primary">Presale</MudChip>
-                                            </MudItem>
-                                        </MudGrid>
-                                    </MudItem>
-                                    <MudItem xs="12">
-                                        <MudGrid Spacing="0">
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="3">
-                                                        <p class="text-white text-xl font-bold">
-                                                            Token Name
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="9" Class="pr-15">
-                                                        <p class="text-white text-right text-xl font-bold">
-                                                            @Pool.Token.Name
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="3">
-                                                        <p class="text-white text-xl font-bold">
-                                                            Token Symbol
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="9" Class="pr-15">
-                                                        <p class="text-white text-right text-xl font-bold">
-                                                            @Pool.Token.Symbol
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="3">
-                                                        <p class="text-white text-xl font-bold">
-                                                            Token Decimals
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="9" Class="pr-15">
-                                                        <p class="text-white text-right text-xl font-bold">
-                                                            @Pool.Token.Decimals
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="3">
-                                                        <p class="text-white text-xl font-bold">
-                                                            Token Address
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="9" Class="pr-15">
-                                                        <p class="text-info text-right text-xl font-bold">
-                                                            @Pool.Token.Address
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="3">
-                                                        <p class="text-white text-xl font-bold">
-                                                            Total Supply
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="9" Class="pr-15">
-                                                        <p class="text-white text-right text-xl font-bold">
-                                                            @Pool.Token.TotalSupply
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="3">
-                                                        <p class="text-white text-xl font-bold">
-                                                            Soft Cap
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="9" Class="pr-15">
-                                                        <p class="text-white text-right text-xl font-bold">
-                                                            @Pool.SoftCap
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="3">
-                                                        <p class="text-white text-xl font-bold">
-                                                            Hard Cap
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="9" Class="pr-15">
-                                                        <p class="text-white text-right text-xl font-bold">
-                                                            @Pool.HardCap
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="4">
-                                                        <p class="text-white text-xl font-bold">
-                                                            Minimum Contribution
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="8" Class="pr-15">
-                                                        <p class="text-white text-right text-xl font-bold">
-                                                            @Pool.MinimumBuy
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="4">
-                                                        <p class="text-white text-xl font-bold">
-                                                            Maximum Contribution
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="8" Class="pr-15">
-                                                        <p class="text-white text-right text-xl font-bold">
-                                                            @Pool.MaximumBuy
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="4">
-                                                        <p class="text-white text-xl font-bold">
-                                                            Presale Start Time
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="8" Class="pr-15">
-                                                        <p class="text-white text-right text-xl font-bold">
-                                                            @Pool.StartTime
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="3">
-                                                        <p class="text-white text-xl font-bold">
-                                                            Presale End Time
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="9" Class="pr-15">
-                                                        <p class="text-white text-right text-xl font-bold">
-                                                            @Pool.EndTime
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudItem xs="12" Class="pt-5">
-                                                <MudGrid>
-                                                    <MudItem xs="12" Class="pr-15">
-                                                        <p class="text-white text-left text-xl font-medium">
-                                                            @Pool.Description
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-
-                                        </MudGrid>
-                                    </MudItem>
-                                </div>
-                            </div>
-                        </div>
-                    </MudItem>
-                    <MudItem xs="4">
-                        <div class="mx auto rounded-md bg-hr w-full border-1  shadow-lg justify-between" style="border:1px">
-                            <div class="mt-1 w-full p-4">
-                                <div class="mt-4 ">
+<MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
+    <MudGrid Spacing="2">
+        <MudItem xs="12" md="8" sm="12" lg="8">
+            <div class="mx auto rounded-md bg-hr w-full border-1  shadow-lg justify-between" style="border:1px">
+                <div class="mt-1 w-full p-4">
+                    <div class="mt-4 ">
+                        <MudItem xs="12" sm="12" md="12" lg="12">
+                            <MudGrid>
+                                <MudItem xs="3" sm="3" md="2" lg="2">
+                                    <MudImage Src="@Pool.LogoUrl" Alt="token" Class="rounded-lg" Width="50" Height="50"></MudImage>
+                                </MudItem>
+                                <MudItem xs="9" sm="7" md="7" lg="7">
                                     <MudGrid>
-                                        <MudItem xs="12">
-                                            <MudImage Src="@Pool.BannerUrl" ObjectFit="ObjectFit.Cover" Alt="token" Height="50"></MudImage>
+                                        <MudItem xs="12" sm="12" md="12" lg="12">
+                                            <p class="text-white text-4xl font-bold text-left">@Pool.PoolTitle</p>
                                         </MudItem>
-                                        <MudItem xs="12">
-                                            <p class="text-white text-center text-2xl font-bold">
-                                                @if (Pool.State == Services.Web3.Dtos.PoolState.InUse)
-                                                {
-                                                    <MudChip Color="Color.Success">Active</MudChip>
-                                                }
-                                                else if (Pool.State == Services.Web3.Dtos.PoolState.Completed)
-                                                {
-                                                    <MudChip Color="Color.Warning">Completed</MudChip>
-                                                }
-                                                else if (Pool.State == Services.Web3.Dtos.PoolState.NotStarted)
-                                                {
-                                                    <MudChip Color="Color.Error">Not Started</MudChip>
-                                                }
-                                            </p>
-                                        </MudItem>
-                                        <MudItem xs="12">
-                                            <MudProgressLinear Color="Color.Primary" Rounded="true" Size="Size.Large" Value="double.Parse(Pool.RaisedPercentage.ToString())">
-                                                <MudText Typo="Typo.caption" Style="color:white">
-                                                    <b>@Pool.RaisedPercentage.ToString("0.00") %</b>
-                                                </MudText>
-                                            </MudProgressLinear>
-                                            <MudItem xs="12" Class="pt-2">
-                                                <MudGrid>
-                                                    <MudItem xs="9">
-                                                        <p class="text-white text-start font-bold">
-                                                            @Pool.TotalRaised
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="3">
-                                                        <p class="text-white text-end font-bold">
-                                                            @Pool.SoftCap MATIC
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                        </MudItem>
+                                        <MudItem xs="1" sm="1" md="1" lg="1">
+                                            <MudLink Href="@Pool.WebsiteLink">
+                                                <MudIcon Icon="@websiteIcon" Style="color:white" Size="Size.Small">
 
-                                        <MudItem xs="12">
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="6">
-                                                        <p class="text-white text-start font-bold">
-                                                            Payment Method
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="6">
-                                                        <p class="text-white text-start font-bold">
-                                                            Amount
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
-                                            <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled">
-                                                <MudSelect Class="text-white" T="string" TextChanged="@SelectionChanged" Variant="Variant.Filled" Text="@SelectedCurrencySymbol" AdornmentIcon="@Icons.Material.Filled.ArrowDropDown" AdornmentColor="Color.Primary">
-                                                    @foreach (var currency in Pool.Currencies)
-                                                    {
-                                                        @if (currency.Address == "0x0000000000000000000000000000000000001010")
-                                                        {
-                                                            <MudSelectItem Value="@currency.Address">
-                                                                MATIC
-                                                            </MudSelectItem>
-                                                        }
-                                                        else
-                                                        {
-                                                            <MudSelectItem Value="@currency.Address">
-                                                                @currency.Symbol
-                                                            </MudSelectItem>
-                                                        }
-                                                    }
-                                                </MudSelect>
-                                                <input type="text" title="" required placeholder="0"
-                                                       class="bg-pr border-none outline-none w-24 px-2 py-2 text-white rounded-md" @bind-value="Contribution.Amount" @oninput="CalculateEarningAsync" />
-                                                <MudButton OnClick="SetMaximumContribution">MAX</MudButton>
-                                            </MudButtonGroup>
+                                                </MudIcon>
+                                            </MudLink>
                                         </MudItem>
-                                        <MudItem xs="12">
-                                            <MudItem xs="12">
-                                                <MudGrid>
-                                                    <MudItem xs="6">
-                                                        <p class="text-white text-start font-bold">
-                                                            You will Recieve
-                                                        </p>
-                                                    </MudItem>
-                                                    <MudItem xs="6">
-                                                        <p class="text-white text-start font-bold">
-                                                            @Earning @Pool.Token.Symbol
-                                                        </p>
-                                                    </MudItem>
-                                                </MudGrid>
-                                            </MudItem>
+                                        <MudItem xs="1" sm="1" md="1" lg="1">
+                                            <MudLink Href="@Pool.TelegramLink">
+                                                <MudIcon Icon="@telegramIcon" Style="color:white" Size="Size.Medium">
+
+                                                </MudIcon>
+                                            </MudLink>
                                         </MudItem>
-                                        <MudItem xs="12" Class="pt-5">
-                                            @if (Pool.State == Services.Web3.Dtos.PoolState.InUse)
-                                            {
-                                                @if (SelectedCurrency != null)
-                                                {
-                                                    <button type="button"
-                                                            class="mx-auto w-full flex items-center justify-center inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                                            @onclick="Contribute">
-                                                        SUBMIT
-                                                    </button>
-                                                }
-                                            }
+                                        <MudItem xs="1" sm="1" md="1" lg="1">
+                                            <MudLink Href="@Pool.TwitterLink">
+                                                <MudIcon Icon="@twitterIcon" Style="color:white" Size="Size.Medium">
+
+                                                </MudIcon>
+                                            </MudLink>
+                                        </MudItem>
+                                        <MudItem xs="1" sm="1" md="1" lg="1">
+                                            <MudLink Href="@Pool.InstagramLink">
+                                                <MudIcon Icon="@instagramIcon" Style="color:white" Size="Size.Medium">
+
+                                                </MudIcon>
+                                            </MudLink>
                                         </MudItem>
                                     </MudGrid>
-                                </div>
-                            </div>
-                        </div>
-                    </MudItem>
-                </MudGrid>
-                @if (_ContributionState.Value.Contributors.Count >= 1)
-                {
-                    <MudDataGrid Items="@_ContributionState.Value.Contributors" Filterable="false" SortMode="@SortMode.None" Groupable="false">
-                        <Columns>
-                            <PropertyColumn Property="x => x.ContributorAddress" Title="Contributors" />
-                            <PropertyColumn Property="x => x.Amount" Title="Amount" />
-                            <PropertyColumn Property="x => x.TimeStamp" Title="Date" />
-                            <PropertyColumn Property="x => x.CurrencyUsed" Title="Currency Used" />
-                        </Columns>
-                    </MudDataGrid>
-                }
+                                </MudItem>
+                                <MudItem xs="12" sm="2" md="3" lg="3" Class="pl-10">
+                                    <MudChip Color="Color.Primary">Presale</MudChip>
+                                </MudItem>
+                            </MudGrid>
+                        </MudItem>
+                        <MudItem xs="12" sm="12" md="12" lg="12">
+                            <MudGrid Spacing="0">
+                                <MudItem xs="12" sm="12" md="12" lg="12">
+                                    <MudGrid>
+                                        <MudItem xs="4" sm="3" md="3" lg="3">
+                                            <p class="text-white text-xl font-bold">
+                                                Token Name
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="8" sm="9" md="9" lg="9" Class="text-right pr-15">
+                                            <p class="text-white text-xl font-bold">
+                                                @Pool.Token.Name
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+                                <MudItem xs="12" sm="12" md="12" lg="12">
+                                    <MudGrid>
+                                        <MudItem xs="3" sm="3" md="3" lg="3">
+                                            <p class="text-white text-xl font-bold">
+                                                Token Symbol
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="9" sm="9" md="9" lg="9" Class="text-right pr-15">
+                                            <p class="text-white text-xl font-bold">
+                                                @Pool.Token.Symbol
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+                                <MudItem xs="12" sm="12" md="12" lg="12">
+                                    <MudGrid>
+                                        <MudItem xs="3" sm="3" md="3" lg="3">
+                                            <p class="text-white text-xl font-bold">
+                                                Token Decimals
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="12" sm="9" md="9" lg="9" Class="text-right pr-15">
+                                            <p class="text-white text-xl font-bold">
+                                                @Pool.Token.Decimals
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <MudGrid>
+                                        <MudItem xs="3">
+                                            <p class="text-white text-xl font-bold">
+                                                Token Address
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="9" Class="pr-15">
+                                            <p class="text-info text-right text-xl font-bold">
+                                                @Pool.Token.Address
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <MudGrid>
+                                        <MudItem xs="3">
+                                            <p class="text-white text-xl font-bold">
+                                                Total Supply
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="9" Class="pr-15">
+                                            <p class="text-white text-right text-xl font-bold">
+                                                @Pool.Token.TotalSupply
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <MudGrid>
+                                        <MudItem xs="3">
+                                            <p class="text-white text-xl font-bold">
+                                                Soft Cap
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="9" Class="pr-15">
+                                            <p class="text-white text-right text-xl font-bold">
+                                                @Pool.SoftCap
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <MudGrid>
+                                        <MudItem xs="3">
+                                            <p class="text-white text-xl font-bold">
+                                                Hard Cap
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="9" Class="pr-15">
+                                            <p class="text-white text-right text-xl font-bold">
+                                                @Pool.HardCap
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+
+                                <MudItem xs="12">
+                                    <MudGrid>
+                                        <MudItem xs="4">
+                                            <p class="text-white text-xl font-bold">
+                                                Minimum Contribution
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="8" Class="pr-15">
+                                            <p class="text-white text-right text-xl font-bold">
+                                                @Pool.MinimumBuy
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <MudGrid>
+                                        <MudItem xs="4">
+                                            <p class="text-white text-xl font-bold">
+                                                Maximum Contribution
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="8" Class="pr-15">
+                                            <p class="text-white text-right text-xl font-bold">
+                                                @Pool.MaximumBuy
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <MudGrid>
+                                        <MudItem xs="4">
+                                            <p class="text-white text-xl font-bold">
+                                                Presale Start Time
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="8" Class="pr-15">
+                                            <p class="text-white text-right text-xl font-bold">
+                                                @Pool.StartTime
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <MudGrid>
+                                        <MudItem xs="3">
+                                            <p class="text-white text-xl font-bold">
+                                                Presale End Time
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="9" Class="pr-15">
+                                            <p class="text-white text-right text-xl font-bold">
+                                                @Pool.EndTime
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+                                <MudItem xs="12" Class="pt-5">
+                                    <MudGrid>
+                                        <MudItem xs="12" Class="pr-15">
+                                            <p class="text-white text-left text-xl font-medium">
+                                                @Pool.Description
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+
+                            </MudGrid>
+                        </MudItem>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-<style>
-    .ellipsis {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis
+        </MudItem>
+        <MudItem xs="12" sm="12" md="4" lg="4">
+            <div class="mx auto rounded-md bg-hr w-full border-1  shadow-lg justify-between" style="border:1px">
+                <div class="mt-1 w-full p-4">
+                    <div class="mt-4 ">
+                        <MudGrid>
+                            <MudItem xs="12">
+                                <MudImage Src="@Pool.BannerUrl" ObjectFit="ObjectFit.Cover" Alt="token" Height="50"></MudImage>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <p class="text-white text-center text-2xl font-bold">
+                                    @if (Pool.State == Services.Web3.Dtos.PoolState.InUse)
+                                    {
+                                        <MudChip Color="Color.Success">Active</MudChip>
+                                    }
+                                    else if (Pool.State == Services.Web3.Dtos.PoolState.Completed)
+                                    {
+                                        <MudChip Color="Color.Warning">Completed</MudChip>
+                                    }
+                                    else if (Pool.State == Services.Web3.Dtos.PoolState.NotStarted)
+                                    {
+                                        <MudChip Color="Color.Error">Not Started</MudChip>
+                                    }
+                                </p>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <MudProgressLinear Color="Color.Primary" Rounded="true" Size="Size.Large" Value="double.Parse(Pool.RaisedPercentage.ToString())">
+                                    <MudText Typo="Typo.caption" Style="color:white">
+                                        <b>@Pool.RaisedPercentage.ToString("0.00") %</b>
+                                    </MudText>
+                                </MudProgressLinear>
+                                <MudItem xs="12" Class="pt-2">
+                                    <MudGrid>
+                                        <MudItem xs="9">
+                                            <p class="text-white text-start font-bold">
+                                                @Pool.TotalRaised
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="3">
+                                            <p class="text-white text-end font-bold">
+                                                @Pool.SoftCap MATIC
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+                            </MudItem>
+
+                            <MudItem xs="12">
+                                <MudItem xs="12">
+                                    <MudGrid>
+                                        <MudItem xs="6">
+                                            <p class="text-white text-start font-bold">
+                                                Payment Method
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="6">
+                                            <p class="text-white text-start font-bold">
+                                                Amount
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+                                <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled">
+                                    <MudSelect Class="text-white" T="string" TextChanged="@SelectionChanged" Variant="Variant.Filled" Text="@SelectedCurrencySymbol" AdornmentIcon="@Icons.Material.Filled.ArrowDropDown" AdornmentColor="Color.Primary">
+                                        @foreach (var currency in Pool.Currencies)
+                                        {
+                                            @if (currency.Address == "0x0000000000000000000000000000000000001010")
+                                            {
+                                                <MudSelectItem Value="@currency.Address">
+                                                    MATIC
+                                                </MudSelectItem>
+                                            }
+                                            else
+                                            {
+                                                <MudSelectItem Value="@currency.Address">
+                                                    @currency.Symbol
+                                                </MudSelectItem>
+                                            }
+                                        }
+                                    </MudSelect>
+                                    <input type="text" title="" required placeholder="0"
+                                           class="bg-pr border-none outline-none w-24 px-2 py-2 text-white rounded-md" @bind-value="Contribution.Amount" @oninput="CalculateEarningAsync" />
+                                    <MudButton OnClick="SetMaximumContribution">MAX</MudButton>
+                                </MudButtonGroup>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <MudItem xs="12">
+                                    <MudGrid>
+                                        <MudItem xs="6">
+                                            <p class="text-white text-start font-bold">
+                                                You will Recieve
+                                            </p>
+                                        </MudItem>
+                                        <MudItem xs="6">
+                                            <p class="text-white text-start font-bold">
+                                                @Earning @Pool.Token.Symbol
+                                            </p>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>
+                            </MudItem>
+                            <MudItem xs="12" Class="pt-5">
+                                @if (Pool.State == Services.Web3.Dtos.PoolState.InUse)
+                                {
+                                    @if (SelectedCurrency != null)
+                                    {
+                                        <button type="button"
+                                                class="mx-auto w-full flex items-center justify-center inline-block px-4 py-2.5 bg-blue-600 text-white font-bold text-base menu-btn leading-tight shadow-md hover:bg-blue-700 hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                                @onclick="Contribute">
+                                            SUBMIT
+                                        </button>
+                                    }
+                                }
+                            </MudItem>
+                        </MudGrid>
+                    </div>
+                </div>
+            </div>
+        </MudItem>
+    </MudGrid>
+    @if (_ContributionState.Value.Contributors.Count >= 1)
+    {
+        <MudItem xs="12" Class="pt-10">
+            <MudDataGrid  Items="@_ContributionState.Value.Contributors" Filterable="false" SortMode="@SortMode.None" Groupable="false">
+                <Columns>
+                    <PropertyColumn Property="x => x.ContributorAddress" Title="Contributors" />
+                    <PropertyColumn Property="x => x.Amount" Title="Amount" />
+                    <PropertyColumn Property="x => x.TimeStamp" Title="Date" />
+                    <PropertyColumn Property="x => x.CurrencyUsed" Title="Currency Used" />
+                </Columns>
+            </MudDataGrid>
+        </MudItem>
     }
-</style>
+</MudContainer>
 @code {
-    public record Employee(string Name, string Position, int YearsEmployed, int Salary, int Rating);
-    public IEnumerable<Employee> employees;
     const string websiteIcon = @"<svg style=""width:20px;height:20px"" viewBox=""0 0 24 24"">
     <path fill=""currentColor"" d=""M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm6.355-6.048v-.105c0-.922 0-1.343-.652-1.716a7.374 7.374 0 0 0-.645-.325c-.367-.167-.61-.276-.938-.756a12.014 12.014 0 0 1-.116-.172c-.345-.525-.594-.903-1.542-.753-1.865.296-2.003.624-2.085 1.178l-.013.091c-.121.81-.143 1.082.195 1.437 1.265 1.327 2.023 2.284 2.253 2.844.112.273.4 1.1.202 1.918a8.185 8.185 0 0 0 3.151-2.237c.11-.374.19-.84.19-1.404zM12 3.833c-2.317 0-4.41.966-5.896 2.516.177.123.331.296.437.534.204.457.204.928.204 1.345 0 .328 0 .64.105.865.144.308.766.44 1.315.554.197.042.399.084.583.135.506.14.898.595 1.211.96.13.151.323.374.42.43.05-.036.211-.211.29-.498.062-.22.044-.414-.045-.52-.56-.66-.529-1.93-.356-2.399.272-.739 1.122-.684 1.744-.644.232.015.45.03.614.009.622-.078.814-1.025.949-1.21.292-.4 1.186-1.003 1.74-1.375A8.138 8.138 0 0 0 12 3.833z"" />
 </svg>";

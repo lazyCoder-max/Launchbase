@@ -117,7 +117,18 @@ namespace Launchbase.Services.Web3
                         pool.TotalRaised = Nethereum.Web3.Web3.Convert.FromWei(System.Numerics.BigInteger.Parse(element[5].GetString()));
                         pool.SoftCap = decimal.Parse(element[6].GetString());
                         pool.HardCap = decimal.Parse(element[7].GetString());
-                        pool.State = (PoolState)int.Parse(element[8].GetString());
+                        if(DateTime.Now > pool.EndTime && DateTime.Now> pool.StartTime)
+                        {
+                            pool.State = PoolState.Completed;
+                        }
+                        else if (DateTime.Now < pool.StartTime && DateTime.Now < pool.EndTime)
+                        {
+                            pool.State = PoolState.NotStarted;
+                        }
+                        else if(DateTime.Now> pool.StartTime && DateTime.Now < pool.EndTime)
+                        {
+                            pool.State = PoolState.InUse;
+                        }
                         pool.MinimumBuy = decimal.Parse(element[9].GetString());
                         pool.MaximumBuy = decimal.Parse(element[10].GetString());
                         JArray jsonArray = JArray.Parse(element[11].GetRawText());

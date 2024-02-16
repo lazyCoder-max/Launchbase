@@ -57,12 +57,12 @@ namespace Launchbase.Store.PoolUseCase.Actions
                             }
                             else
                             {
-                                dispatcher.Dispatch(new ResultAction(new() { Message = "Contribution Failed!", Status = TaskStatus.Failed }));
+                                dispatcher.Dispatch(new ResultAction(new() { Message = $"{isContributed.Message}", Status = TaskStatus.Failed }));
                             }
                         }
                         else
                         {
-                            dispatcher.Dispatch(new ResultAction(new() { Message = "Contribution Failed!", Status = TaskStatus.Failed }));
+                            dispatcher.Dispatch(new ResultAction(new() { Message = $"Error on Approval:{isApproved.Message}", Status = TaskStatus.Failed }));
                         }
                     }
                     else
