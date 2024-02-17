@@ -10,3 +10,6 @@ Launchbase is a decentralized multi-currency Token launcher and presale pool man
 ![enter image description here](https://github.com/lazyCoder-max/Launchbase/blob/master/Screenshot%202024-01-29%20131020.png)
 ![enter image description here](https://github.com/lazyCoder-max/Launchbase/blob/master/Screenshot%202024-02-17%200927362.png)
 ![Images](https://github.com/lazyCoder-max/Launchbase/blob/master/2024-02-17%2009-11-00.gif)
+## Do you want to talk about it?
+ ![enter image description here](https://telegram.org/img/website_icon.svg)**Say Hi in Telegram**: https://t.me/LaziCoder
+![ Coffee](https://www.buymeacoffee.com/app/assets/img/qr-logo.svg)**Buy me a Coffee** : https://www.buymeacoffee.com/lazicoder
