@@ -4,12 +4,13 @@ using Launchbase.Services;
 using MetaMask.Blazor;
 using Microsoft.JSInterop;
 using Launchbase.Services.Web3.Dtos;
+using Launchbase.Dtos;
 
 namespace Launchbase.Store.PoolUseCase.Actions
 {
     public class GetContributors
     {
-        public record Action(IJSRuntime JSRuntime = null, IMetaMaskService metamask = null, int? poolId =null)
+        public record Action(IJSRuntime JSRuntime = null, IMetaMaskService metamask = null, int? poolId =null,Chain selectedChain=null)
         {
             [ReducerMethod]
             public static Contribution Reducer(Contribution state, Action action)
@@ -37,8 +38,8 @@ namespace Launchbase.Store.PoolUseCase.Actions
                         return;
                     }
                     var address = await action.metamask.GetSelectedAddress();
-                    var spenderAddress = Program.Configuration.GetRequiredSection("ContractAddress").GetValue<string>("Address");
-                    ILaunchBaseServices services = new LaunchBaseServices(action.JSRuntime, spenderAddress, address);
+                    var spenderAddress = action.selectedChain.Address;
+                    ILaunchBaseServices services = new LaunchBaseServices(action.JSRuntime, spenderAddress, address, action.selectedChain.GasAPI);
 
                     var isApproved = await services.Pool.GetContributorsAsync(action.poolId.Value);
                     if (isApproved.Status)

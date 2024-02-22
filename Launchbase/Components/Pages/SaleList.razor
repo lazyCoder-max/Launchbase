@@ -77,16 +77,16 @@
                                 </MudItem>
                                 <MudItem xs="7">
                                     <MudItem>
-                                        <MudText Typo="Typo.body1" Align="Align.End" Style="color:white"><strong>@pool.TotalRaised MATIC</strong></MudText>
+                                        <MudText Typo="Typo.body1" Align="Align.End" Style="color:white"><strong>@pool.TotalRaised @SelectedChain.Value.CurrecySymbol</strong></MudText>
                                     </MudItem>
                                     <MudItem>
-                                        <MudText Typo="Typo.body1" Align="Align.End" Style="color:white"><strong>@pool.SoftCap MATIC</strong></MudText>
+                                        <MudText Typo="Typo.body1" Align="Align.End" Style="color:white"><strong>@pool.SoftCap @SelectedChain.Value.CurrecySymbol</strong></MudText>
                                     </MudItem>
                                     <MudItem>
-                                        <MudText Typo="Typo.body1" Align="Align.End" Style="color:white"><strong>@pool.HardCap MATIC</strong></MudText>
+                                        <MudText Typo="Typo.body1" Align="Align.End" Style="color:white"><strong>@pool.HardCap @SelectedChain.Value.CurrecySymbol</strong></MudText>
                                     </MudItem>
                                     <MudItem>
-                                        <MudText Typo="Typo.body1" Align="Align.End" Style="color:white"><strong>@pool.MinimumBuy MATIC ~ @pool.MaximumBuy MATIC</strong></MudText>
+                                        <MudText Typo="Typo.body1" Align="Align.End" Style="color:white"><strong>@pool.MinimumBuy @SelectedChain.Value.CurrecySymbol ~ @pool.MaximumBuy @SelectedChain.Value.CurrecySymbol</strong></MudText>
                                     </MudItem>
                                     <MudItem Class="pt-2">
                                         <MudText Typo="Typo.body1" Align="Align.End" Style="color:white"><strong>@pool.StartTime</strong></MudText>

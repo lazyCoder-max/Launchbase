@@ -39,7 +39,7 @@
                         </MudItem>
                         <MudItem xs="12">
                             <MudMenu Class="pb-2" StartIcon="@Icons.Material.Filled.CurrencyExchange" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Label="Currencies" Color="Color.Primary" Variant="Variant.Filled">
-                                @foreach (var currency in Currencies)
+                                @foreach (var currency in SelectedChain.Value.Currencies)
                                 {
                                     <MudNavMenu Style="background-color:#272B37" Color="Color.Primary">
                                         <MudNavGroup Title="@currency.Symbol" Style="color:white">
@@ -56,7 +56,7 @@
                         <MudItem xs="6">
                             <MudItem xs="12" Class="pb-2">
                                 <p>
-                                    <span class="text-white">SoftCap (MATIC)</span>
+                                    <span class="text-white">SoftCap (@SelectedChain.Value.CurrecySymbol)</span>
                                     <span class="text-danger">*</span>
                                     <span class="text-info">(Softcap must be >= 15% of Hardcap!)</span>
                                 </p>
@@ -69,7 +69,7 @@
                         <MudItem xs="6">
                             <MudItem xs="12" Class="pb-2">
                                 <p>
-                                    <span class="text-white">HardCap (MATIC)</span>
+                                    <span class="text-white">HardCap (@SelectedChain.Value.CurrecySymbol)</span>
                                     <span class="text-danger">*</span>
                                 </p>
                             </MudItem>
@@ -81,7 +81,7 @@
                         <MudItem xs="6">
                             <MudItem xs="12" Class="pb-2">
                                 <p>
-                                    <span class="text-white">Minimum buy (MATIC)</span>
+                                    <span class="text-white">Minimum buy (@SelectedChain.Value.CurrecySymbol)</span>
                                     <span class="text-danger">*</span>
                                 </p>
                             </MudItem>
@@ -93,7 +93,7 @@
                         <MudItem xs="6">
                             <MudItem xs="12" Class="pb-2">
                                 <p>
-                                    <span class="text-white">Maximum buy (MATIC)</span>
+                                    <span class="text-white">Maximum buy (@SelectedChain.Value.CurrecySymbol)</span>
                                     <span class="text-danger">*</span>
                                 </p>
                             </MudItem>

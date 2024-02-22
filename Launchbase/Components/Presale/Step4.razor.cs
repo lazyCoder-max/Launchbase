@@ -1,4 +1,5 @@
 ﻿using Fluxor;
+using Launchbase.Dtos;
 using Launchbase.Store.PoolUseCase.Actions;
 using Launchbase.Store.TokenUseCase.Actions;
 using MetaMask.Blazor;
@@ -18,9 +19,10 @@ namespace Launchbase.Components.Presale
         [Inject] private ISnackbar Snackbr { get; set; }
         [Inject] private IDispatcher _dispatcher { get; set; }
         [Inject] private IActionSubscriber _actionSubscriber { get; set; }
+        [Inject] private ChainStateContainer SelectedChain { get; set; }
         public void Submit()
         {
-            _dispatcher.Dispatch(new CreatePoolToken.Action(javaScript, metamask, Presale.PoolState.Value));
+            _dispatcher.Dispatch(new CreatePoolToken.Action(javaScript, metamask, Presale.PoolState.Value, SelectedChain.Value));
             _actionSubscriber.SubscribeToAction<CreatePoolToken.ResultAction>(this, action =>
             {
                 if (action.PoolStatus.Status == Store.PoolUseCase.TaskStatus.Created)
