@@ -5,6 +5,7 @@ using Microsoft.JSInterop;
 using MudBlazor;
 using Launchbase.Services;
 using Launchbase.Services.Interfaces;
+using Launchbase.Dtos;
 
 namespace Launchbase.Components.Layout
 {
@@ -15,13 +16,19 @@ namespace Launchbase.Components.Layout
         private string signature { get; set; } = "";
         private string chainLogoUrl { get; set; }
         private string chainName { get; set; }
-        private long chainId { get; set; }
         [Inject] IJSRuntime javaScript { get; set; }
-        [Inject] IMetaMaskService metamask { get;set; }
+        [Inject] IMetaMaskService metamask { get; set; }
         [Inject] private ISnackbar Snackbr { get; set; }
+        [Inject] private ChainStateContainer Container { get; set; }
+        private Chain SelectedChain { get; set; }
+        public List<Chain> Chains { get; set; } = new();
+        protected override async Task OnInitializedAsync()
+        {
+            Program.Configuration.GetSection("ContractAddress").Bind(Chains);
+        }
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if(firstRender)
+            if (firstRender)
             {
                 IMetaMaskService.AccountChangedEvent += IMetaMaskService_AccountChangedEvent;
                 IMetaMaskService.ChainChangedEvent += IMetaMaskService_ChainChangedEvent;
@@ -37,7 +44,7 @@ namespace Launchbase.Components.Layout
         private async void ConnectWalletAsync()
         {
             try
-            {   
+            {
                 isConnected = await metamask.IsSiteConnected();
                 if (!isConnected)
                 {
@@ -59,7 +66,7 @@ namespace Launchbase.Components.Layout
                 else
                 {
                     isConnected = true;
-                    
+
                     var connectedChain = await metamask.GetSelectedChain();
                     CheckConnectedChainCompatability(connectedChain.chainId);
                 }
@@ -82,7 +89,7 @@ namespace Launchbase.Components.Layout
         private async Task IMetaMaskService_ChainChangedEvent((long, MetaMask.Blazor.Enums.Chain) arg)
         {
             var result = CheckConnectedChainCompatability(arg.Item1);
-            if(!result.Item1)
+            if (!result.Item1)
                 Snackbr.Add(result.Item2, Severity.Warning);
             StateHasChanged();
         }
@@ -96,20 +103,25 @@ namespace Launchbase.Components.Layout
             isConnected = false;
             StateHasChanged();
         }
-        private (bool,string) CheckConnectedChainCompatability(long chain)
+        private (bool, string) CheckConnectedChainCompatability(long chain)
         {
-            chainName = Program.Configuration.GetRequiredSection("ContractAddress").GetValue<string>("DeployedChain");
-            chainId = Program.Configuration.GetRequiredSection("ContractAddress").GetValue<long>("ActiveChainId");
-            chainLogoUrl = Program.Configuration.GetRequiredSection("ContractAddress").GetValue<string>("ChainLogoUrl");
-            if (chainId != chain)
+            if (!Chains.Any(x => x.ActiveChainId == chain))
             {
-                chainName = $"Chain Id: {chain} is not acceptable, please use only {chainName}";
+                string chains = $"";
+                foreach (var item in Chains.Select(x => x.DeployedChain))
+                {
+                    chains += $"{item} ,";
+                }
+                chainName = $"Chain Id: {chain} is not acceptable, please use only {chains}";
                 chainLogoUrl = "";
-                return (true,chainName);
+                return (true, chainName);
             }
             else
             {
-                chainName = Program.Configuration.GetRequiredSection("ContractAddress").GetValue<string>("DeployedChain");
+                SelectedChain = Chains.FirstOrDefault(x => x.ActiveChainId == chain);
+                chainLogoUrl = SelectedChain.ChainLogoUrl;
+                chainName = SelectedChain.DeployedChain;
+                Container.SetValue(SelectedChain);
             }
             return (true, null);
         }

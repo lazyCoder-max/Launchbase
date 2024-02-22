@@ -15,7 +15,7 @@ namespace Launchbase.Services
         private readonly Lazy<IWallet> _lazyWalletServices;
         private readonly Lazy<IToken> _lazyTokenServices;
         private readonly Lazy<IPool> _lazyPoolServices;
-        public LaunchBaseServices(IJSRuntime jSRuntime, string contractAddress, string account="")
+        public LaunchBaseServices(IJSRuntime jSRuntime, string contractAddress, string account="", string apiAddress="")
         {
             _lazyTokenServices = new(()=>new Token(jSRuntime,contractAddress,account));
             _lazyPoolServices = new(() => new Pool(jSRuntime, contractAddress, account));

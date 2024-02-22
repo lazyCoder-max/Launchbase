@@ -6,6 +6,7 @@ using Launchbase.Services;
 using Fluxor;
 using Launchbase.Store.TokenUseCase;
 using MudBlazor;
+using Launchbase.Dtos;
 namespace Launchbase
 {
     public class Program
@@ -31,6 +32,7 @@ namespace Launchbase
             }
             builder.Services.AddMudServices();
             builder.Services.AddMetaMaskBlazor();
+            builder.Services.AddSingleton<ChainStateContainer>();
             builder.Services.AddMudServices(config =>
             {
                 config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopRight;

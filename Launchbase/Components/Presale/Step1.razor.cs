@@ -1,4 +1,5 @@
 ﻿using Fluxor;
+using Launchbase.Dtos;
 using Launchbase.Store.TokenUseCase.Actions;
 using MetaMask.Blazor;
 using Microsoft.AspNetCore.Components;
@@ -15,6 +16,7 @@ namespace Launchbase.Components.Presale
         [Inject] private IActionSubscriber _actionSubscriber { get; set; }
         [Inject] IJSRuntime javaScript { get; set; }
         [Inject] public IState<Store.TokenUseCase.Token> _tokenState { get; set; }
+        [Inject] private ChainStateContainer SelectedChain { get; set; }
         bool isApproved = false;
 
         [Parameter]
