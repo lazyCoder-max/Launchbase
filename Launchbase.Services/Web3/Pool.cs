@@ -16,11 +16,13 @@ namespace Launchbase.Services.Web3
         private readonly IJSRuntime javascript;
         private readonly string _contractAddress;
         private readonly string _accountAddress;
-        public Pool(IJSRuntime javascript, string contractAddress, string accountAddress)
+        private readonly string _apiAddress;
+        public Pool(IJSRuntime javascript, string contractAddress, string accountAddress, string apiAddress = "")
         {
             this.javascript = javascript;
             _accountAddress = accountAddress;
             _contractAddress = contractAddress;
+            _apiAddress = apiAddress;
         }
         public async Task<Response<ContractResponse>> ContributeAsync(string account, string tokenAddress, decimal paymentAmount, bool isToken, int poolId, double decimals=16)
         {

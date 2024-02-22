@@ -265,7 +265,7 @@
                                         </MudItem>
                                         <MudItem xs="3">
                                             <p class="text-white text-end font-bold">
-                                                @Pool.SoftCap MATIC
+                                                @Pool.SoftCap @SelectedChain.Value.CurrecySymbol
                                             </p>
                                         </MudItem>
                                     </MudGrid>
@@ -294,7 +294,7 @@
                                             @if (currency.Address == "0x0000000000000000000000000000000000001010")
                                             {
                                                 <MudSelectItem Value="@currency.Address">
-                                                    MATIC
+                                                    @SelectedChain.Value.CurrecySymbol
                                                 </MudSelectItem>
                                             }
                                             else

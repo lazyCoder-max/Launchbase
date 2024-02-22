@@ -5,12 +5,13 @@ using Launchbase.Store.PoolUseCase;
 using MetaMask.Blazor;
 using Microsoft.JSInterop;
 using Launchbase.Services.Web3.Dtos;
+using Launchbase.Dtos;
 
 namespace Launchbase.Store.PoolUseCase.Actions
 {
     public class GetPool
     {
-        public record Action(IJSRuntime JSRuntime = null, IMetaMaskService metamask = null)
+        public record Action(IJSRuntime JSRuntime = null, IMetaMaskService metamask = null, Chain selectedChain=null)
         {
             [ReducerMethod]
             public static PoolToken Reducer(PoolToken state, Action action)
@@ -34,8 +35,8 @@ namespace Launchbase.Store.PoolUseCase.Actions
                 {
                     await Task.Yield();
                     var address = await action.metamask.GetSelectedAddress();
-                    var spenderAddress = Program.Configuration.GetRequiredSection("ContractAddress").GetValue<string>("Address");
-                    ILaunchBaseServices services = new LaunchBaseServices(action.JSRuntime, spenderAddress, address);
+                    var spenderAddress = action.selectedChain.Address;
+                    ILaunchBaseServices services = new LaunchBaseServices(action.JSRuntime, spenderAddress, address,action.selectedChain.GasAPI);
 
                     var isApproved = await services.Pool.GetAllPoolAsync();
                     if (isApproved.Status)

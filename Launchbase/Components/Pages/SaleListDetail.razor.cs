@@ -1,4 +1,5 @@
 ﻿using Fluxor;
+using Launchbase.Dtos;
 using Launchbase.Services.Web3.Dtos;
 using Launchbase.Store.PoolUseCase;
 using Launchbase.Store.PoolUseCase.Actions;
@@ -23,6 +24,7 @@ namespace Launchbase.Components.Pages
         [Inject] private IDispatcher _dispatcher { get; set; }
         [Inject] private IState<Contribution> _ContributionState { get; set; }
         [Inject] private IActionSubscriber _actionSubscriber { get; set; }
+        [Inject] private ChainStateContainer SelectedChain { get; set; }
         [Parameter]
         public string TransactionAddress { get; set; }
         [Parameter]
@@ -52,7 +54,7 @@ namespace Launchbase.Components.Pages
                 TransactionAddress = transactionIdValue;
             }
             Contribution = new();
-            _dispatcher.Dispatch(new GetContributors.Action(javaScript, metamask, Pool.PoolId));
+            _dispatcher.Dispatch(new GetContributors.Action(javaScript, metamask, Pool.PoolId, SelectedChain.Value));
             _actionSubscriber.SubscribeToAction<GetContributors.ResultAction>(this, action =>
             {
                 StateHasChanged();
@@ -79,7 +81,7 @@ namespace Launchbase.Components.Pages
         {
             SelectedCurrency = Pool.Currencies.FirstOrDefault(currency => currency.Address == value);
             if (value == "0x0000000000000000000000000000000000001010")
-                SelectedCurrencySymbol = "MATIC";
+                SelectedCurrencySymbol = $"{SelectedChain.Value.CurrecySymbol}";
             else
                 SelectedCurrencySymbol = SelectedCurrency.Symbol;
             CalculateEarningAsync(new ChangeEventArgs() { Value = Contribution.Amount.Value.ToString() });

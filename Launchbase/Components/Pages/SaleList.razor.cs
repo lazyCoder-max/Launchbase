@@ -1,4 +1,5 @@
 ﻿using Fluxor;
+using Launchbase.Dtos;
 using Launchbase.Services.Web3.Dtos;
 using Launchbase.Store.PoolUseCase.Actions;
 using MetaMask.Blazor;
@@ -18,13 +19,13 @@ namespace Launchbase.Components.Pages
         [Inject] private IActionSubscriber _actionSubscriber { get; set; }
         [Inject] private IState<Store.PoolUseCase.PoolToken> PoolState { get; set; }
         [Inject] private NavigationManager _navigationManager { get; set; }
+        [Inject] private ChainStateContainer SelectedChain { get; set; }
         private bool IsLoading { get; set; } = true;
         protected async override Task OnAfterRenderAsync(bool firstRender)
         {
             if(firstRender)
             {
-                _dispatcher.Dispatch(new GetPool.Action(javaScript, metamask));
-                
+                _dispatcher.Dispatch(new GetPool.Action(javaScript, metamask, SelectedChain.Value));
                 _actionSubscriber.SubscribeToAction<GetPool.ResultAction>(this, action =>
                 {
                     if (action.PoolStatus.Status == Store.PoolUseCase.TaskStatus.Created)

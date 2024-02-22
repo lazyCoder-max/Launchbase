@@ -1,4 +1,5 @@
 ﻿using Fluxor;
+using Launchbase.Dtos;
 using Launchbase.Store.TokenUseCase;
 using MetaMask.Blazor;
 using Microsoft.AspNetCore.Components;
@@ -19,17 +20,14 @@ namespace Launchbase.Components.Presale
         [Inject] public IState<Store.TokenUseCase.Token> _tokenState { get; set; }
         [Inject] private IDispatcher _dispatcher { get; set; }
         [Inject] private IActionSubscriber _actionSubscriber { get; set; }
-
-        public List<Currency> Currencies { get; set; }
+        [Inject] private ChainStateContainer SelectedChain { get; set; }
         protected async override Task OnInitializedAsync()
         {
-            Currencies = new();
-            Program.Configuration.GetSection("Currencies").Bind(Currencies);
-            
+
         }
         private void ContinueBtn()
         {
-            var selectedCurrency = Currencies.Where(x=>x.IsSelected==true).ToList();
+            var selectedCurrency = SelectedChain.Value.Currencies.Where(x=>x.IsSelected==true).ToList();
             if(selectedCurrency.Count>=1 )
             {
                 Presale.PoolState.Value.Token.Currencies = selectedCurrency;

@@ -59,7 +59,7 @@
                         <p class=" text-white">Currency</p>
                     </MudItem>
                     <MudItem xs="12">
-                        <MudRadio Color="Color.Primary" Value="1">MATIC</MudRadio>
+                        <MudRadio Color="Color.Primary" Value="1">@SelectedChain.Value.CurrecySymbol</MudRadio>
                     </MudItem>
                     <MudItem xs="12">
                         @if (_tokenState.Value.ApproveStatus.Status == Store.TokenUseCase.TaskStatus.Processing)
