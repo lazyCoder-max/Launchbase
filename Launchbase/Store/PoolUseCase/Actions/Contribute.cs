@@ -37,8 +37,8 @@ namespace Launchbase.Store.PoolUseCase.Actions
                     }
                     var address = await action.metamask.GetSelectedAddress();
                     var chain = await action.metamask.GetSelectedChain();
-                    var spenderAddress = Program.Configuration.GetRequiredSection($"ContractAddress:{chain.chainId.ToString()}").GetValue<string>("Address");
-                    ILaunchBaseServices services = new LaunchBaseServices(action.JSRuntime, spenderAddress!, address);
+                    var spenderAddress = Program.Configuration.GetRequiredSection($"ContractAddress:{chain.chainId}").GetValue<string>("Address");
+                    ILaunchBaseServices services = new LaunchBaseServices(action.JSRuntime, spenderAddress, address);
 
                     if (action.pool.IsCurrencyToken.Value)
                     {

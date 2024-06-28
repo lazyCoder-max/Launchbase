@@ -43,7 +43,7 @@ namespace Launchbase.Store.TokenUseCase.Actions
                     var address = await action.metamask.GetSelectedAddress();
                     var chain = await action.metamask.GetSelectedChain();
                     ILaunchBaseServices services = new LaunchBaseServices(action.JSRuntime, action.token.Address, address);
-                    var spenderAddress = Program.Configuration.GetRequiredSection($"ContractAddress:{chain.chainId.ToString()}").GetValue<string>("Address");
+                    var spenderAddress = Program.Configuration.GetRequiredSection($"ContractAddress:{chain.chainId}").GetValue<string>("Address");
                     var isApproved = await services.Token.Approve(spenderAddress,action.token.Address, action.token.TotalSupply.Value, action.token.Decimals.Value);
                     if (isApproved.Status)
                     {
